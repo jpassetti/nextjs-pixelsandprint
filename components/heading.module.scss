@@ -1,0 +1,102 @@
+@use '../sass/abstracts/vars';
+@use '../sass/abstracts/mixins';
+
+.heading {
+	font-weight: 700;
+	font-family: vars.$font__sherman_sans;
+	a {
+		color: inherit;
+		text-decoration: none;
+
+		&:hover,
+		&:focus {
+			text-decoration: underline;
+		}
+	}
+
+	&.h1 {
+		font-size: 2rem;
+		@include mixins.breakpoint(sm) {
+			font-size: 2.75rem;
+		}
+
+		@include mixins.breakpoint(md) {
+			font-size: 3.4rem;
+		}
+		&.size-small {
+			font-size: 1.5rem;
+			@include mixins.breakpoint(sm) {
+				font-size: 2rem;
+			}
+		
+			@include mixins.breakpoint(md) {
+				font-size: 2.5rem;
+			}
+		}
+	}
+
+	&.h2 {
+		font-size: 1.5rem;
+
+		@include mixins.breakpoint(sm) {
+			font-size: 1.75rem;
+		}
+
+		@include mixins.breakpoint(md) {
+			font-size: 2rem;
+		}
+		&.size-small {
+			font-size: 1.5rem;
+		}
+	}
+
+	&.h3 {
+		font-size: 1.3rem;
+
+		&.instrument {
+			font-weight: 500;
+		}
+		&.size-small {
+			font-size: 1.1rem;
+		}
+
+		@include mixins.breakpoint(sm) {
+			font-size: 1.4rem;
+			&.size-small {
+				font-size: 1.2rem;
+			}
+		}
+
+		@include mixins.breakpoint(md) {
+			font-size: 1.5rem;
+			&.size-small {
+				font-size: 1.3rem;
+			}
+		}
+	}
+
+	&.h4 {
+		font-size: 1rem;
+
+		a {
+			text-transform: uppercase;
+		}
+	}
+	&.h5 {
+		font-size: .85rem;
+		letter-spacing: 1px;
+		a {
+			text-transform: uppercase;
+		}
+	}
+	//@include mixins.fontFamily();
+	@include mixins.marginAndPadding();
+	@include mixins.textAlign();
+	@include mixins.textTransform();
+	@include mixins.fontWeight();
+	@include mixins.fontColor();
+	@include mixins.fontSizes();
+	@include mixins.fontStyle();
+	@include mixins.letterSpacing();
+	@include mixins.lineHeight();
+}

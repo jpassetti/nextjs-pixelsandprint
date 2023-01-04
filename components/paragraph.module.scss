@@ -1,0 +1,12 @@
+@use '../sass/abstracts/mixins';
+@use '../sass/abstracts/vars';
+
+.paragraph {
+    font-size: 1rem;
+    line-height: 1.35;
+    &.strong {
+        font-weight: 700;
+    }
+    @include mixins.fontColor();
+    @include mixins.marginAndPadding();
+}

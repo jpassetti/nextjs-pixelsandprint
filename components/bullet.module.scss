@@ -1,0 +1,33 @@
+@use '../sass/abstracts/mixins';
+@use '../sass/abstracts/vars';
+
+
+.bullet {
+    .navyblue {
+        fill: vars.$color__navyblue;
+    }
+    .orange {
+        stroke-width: 4px;
+        stroke: vars.$color__orange;
+        fill: transparent;
+        transition: all .5s;
+        &.active {
+            //fill: vars.$color__orange;
+            stroke-width: 0;
+        }
+        &.isFocused, &.isHovered {
+            fill: vars.$color__orange;
+        }
+        
+    }
+    .white {
+        fill: transparent;
+        transition: all .5s;
+        transform: scale(0);
+        transform-origin: center center;
+        &.active {
+            fill: white;
+            transform: scale(1);
+        }
+    }
+}

@@ -1,0 +1,31 @@
+@use '../abstracts/vars';
+
+h1, h2, h3, h4, h5, h6, p, ul, ol, li {
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+    
+}
+ol, ul, li {
+    list-style: none;
+}
+img, svg {
+    vertical-align: top;
+}
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+body {
+    background-color: vars.$color__navyblue;
+    color: white;
+    font-family: vars.$font__sherman_sans;
+    font-size: 1em;
+}
+.responsive-img {
+    width: 100%;
+    height: auto;
+}

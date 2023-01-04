@@ -1,0 +1,20 @@
+@use '../sass/abstracts/mixins';
+@use '../sass/abstracts/vars';
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 -.5rem;
+	@include mixins.alignItems();
+	@include mixins.marginAndPadding();
+	@include mixins.borderBottom();
+	@include mixins.borderBottomColor();
+	&.min-height {
+		min-height: 100vh;
+	}
+	&.hide-on-mobile {
+		@include mixins.breakpoint(xs) {
+			display: none;
+		};
+	}
+}

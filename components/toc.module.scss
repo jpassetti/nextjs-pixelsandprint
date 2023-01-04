@@ -1,0 +1,54 @@
+@use '../sass/abstracts/mixins';
+@use '../sass/abstracts/vars';
+
+.tocLeft {
+    width: 100%;
+    text-align: left;
+    //background-color: blue;
+    @include mixins.breakpoint(laptop) {
+        width: calc(4/12 * 100%);
+    }
+    ul {
+        //background-color: pink;
+        margin-top: 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        li {
+            margin-bottom: 1rem;
+            position: relative;
+            transform: translateX(-1rem);
+            color: vars.$color__orange;
+            font-size: 2rem;
+            text-decoration: none;
+            font-family: vars.$font__primary;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .5s;
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            align-items: center;
+            &.active, &:focus {
+                color: white;
+            }
+        }
+    }
+}
+.tocRight {
+    width: 100%;
+    padding-top: 4.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    @include mixins.breakpoint(laptop) {
+        width: calc(8/12 * 100%);
+        padding-left: 2rem;
+    }
+}
+.section {
+    display: none;
+    &.active {
+        display: block;
+    }
+}

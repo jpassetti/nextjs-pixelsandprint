@@ -1,0 +1,19 @@
+@use '../sass/abstracts/mixins';
+@use '../sass/abstracts/vars';
+
+.button {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: vars.$font__primary;
+    &.inverse {
+        background-color: transparent;
+        border: 1px solid vars.$color__orange;
+        color: vars.$color__orange;
+    }
+   
+}

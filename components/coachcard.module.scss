@@ -1,0 +1,54 @@
+@use '../sass/abstracts/mixins';
+@use '../sass/abstracts/vars';
+
+.coachcard {
+    width: 100%;
+    height: 100%;
+    transition: all .5s;
+    &:hover {
+        transform: translateY(-0.5rem);
+        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+    }
+    &__image {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 500px;
+        border: 2px solid vars.$color__orange;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: -2rem;
+        position: relative;
+        z-index: 2;
+    }
+    &__content {
+        text-align: center;
+        padding: 3rem 1rem 1rem 1rem;
+        background-color: #fff;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        color: vars.$color__navyblue;
+    }
+    &__role {
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        background-color: gray;
+        padding: 1rem;
+        text-align: center;
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        font-family: vars.$font__primary;
+        &--motion {
+            background-color: vars.$color__mediumorange;
+        }
+        &--design {
+            background-color: vars.$color__lightblue;
+        }
+        &--uiux {
+            background-color: vars.$color__lightorange;
+        }
+    }
+   
+}

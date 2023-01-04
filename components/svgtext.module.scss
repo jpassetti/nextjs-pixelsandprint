@@ -1,0 +1,20 @@
+@use '../sass/abstracts/mixins';
+@use '../sass/abstracts/vars';
+
+.svgText {
+    fill: transparent;
+    stroke: vars.$color__orange;
+    stroke-width: 2px;
+    stroke-location: inside;
+    transition: all .5s;
+    &.isFocused, &.isHovered {
+        fill: vars.$color__orange;
+    }
+    &.isActive {
+        fill: white;
+        stroke: white;
+    }
+}
+.pink {
+    fill:pink;
+}

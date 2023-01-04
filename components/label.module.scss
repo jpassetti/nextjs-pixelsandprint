@@ -1,0 +1,15 @@
+@use '../sass/abstracts/vars';
+@use '../sass/abstracts/mixins';
+
+.label {
+    font-size: .9rem;
+    font-weight: 700;
+    font-family: vars.$font__primary;
+    margin-bottom: .25rem;
+    display: block;
+    &.caps {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    @include mixins.fontColor();
+}

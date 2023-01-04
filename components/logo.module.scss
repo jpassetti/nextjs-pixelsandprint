@@ -1,0 +1,22 @@
+@use '../sass/abstracts/mixins';
+@use '../sass/abstracts/vars';
+
+.logo {
+    @include mixins.marginAndPadding();
+}
+
+.blockS, .SUwordmark {
+    fill: #f76900;
+}
+.wordmark {
+    fill: white;
+}
+.pixels, .print {
+    fill: white; 
+}
+.circle {
+    fill: #f76900;
+}
+.ampersand {
+    fill: vars.$color__navyblue;
+}
