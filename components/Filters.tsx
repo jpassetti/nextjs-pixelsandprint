@@ -7,7 +7,7 @@ import Tabs from './Tabs'
 
 const Filters = ({items, format, activeCategory, setActiveCategory, filterBy}) => {
     return <div className={styles.filterBar}>
-            <Label caps fontWeight="400">Filter by {filterBy}</Label>
+            <Label caps fontWeight="400">{filterBy}</Label>
             <Tabs 
                 items={items} 
                 activeTab={activeCategory} 

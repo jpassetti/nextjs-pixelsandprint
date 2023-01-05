@@ -4,16 +4,28 @@
 .button {
     background-color: white;
     color: black;
-    padding: 10px;
+    padding: 1rem 2rem;
     border-radius: 5px;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
     font-family: vars.$font__primary;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.1rem;
     &.inverse {
         background-color: transparent;
         border: 1px solid vars.$color__orange;
         color: vars.$color__orange;
     }
-   
+    &.primary {
+        background-color: vars.$color__orange;
+        color: vars.$color__navyblue;
+        text-decoration: none;
+       
+    }
+    a {
+         text-decoration: none;   
+    }
+    @include mixins.gradients();
 }

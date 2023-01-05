@@ -5,6 +5,7 @@ import Container from './Container';
 import Logo from './Logo';
 import Paragraph from './Paragraph';
 import Row from './Row'
+import Link from 'next/link';
 
 const Header = () => {
     return <header className={styles.header}>
@@ -15,7 +16,9 @@ const Header = () => {
             </Row>
             <Row>
                 <Col xs={10} sm={8} md={4} paddingLeft={4}>
+                    <Link href="/">
                     <Logo entity="pixels-and-print" />
+                    </Link>
                 </Col>
             </Row>
     </header>

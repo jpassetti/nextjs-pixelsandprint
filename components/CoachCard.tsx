@@ -13,7 +13,9 @@ const CoachCard = ({ coach }) => {
     const { name, title, company, featuredImage, role } = coach;
     let roleClasses = cx({
         coachcard__role: true,
-        [`coachcard__role--${role.slug}`]: role
+        [`gradient-lightorange-to-orange`]: role.slug === 'uiux',
+        [`gradient-mediumorange-to-darkorange`]: role.slug === 'motion',
+        [`gradient-lightblue-to-mediumblue`]: role.slug === 'print',
     });
 
     const variants = {
@@ -43,9 +45,9 @@ const CoachCard = ({ coach }) => {
             className={styles.coachcard__image}
         /> 
         <div className={styles.coachcard__content}>
-            <Heading level={3} size="small" marginBottom={1}>{name}</Heading>
+            <Heading level={3} size="small" marginBottom={1}>{name.first}<br />{name.last}</Heading>
             <Paragraph marginBottom={1}>{title}</Paragraph>
-            <Paragraph><a style={{ textDecoration: "none"}} href={company.url} target="_blank">{company.name}</a></Paragraph>
+            <Paragraph caps condensed><a style={{ textDecoration: "none", color: "inherit"}} href={company.url} target="_blank">{company.name}</a></Paragraph>
         </div>
         <div className={roleClasses}>
             {role.name}

@@ -1,3 +1,6 @@
+@use '../sass/abstracts/mixins';
+@use '../sass/abstracts/vars';
+
 .accordion {
     //background-color: blue;
     padding: 1rem 0;
@@ -10,7 +13,7 @@
     div {
         display: flex;
         gap: 1rem;
-        transform: translateX(-1.6rem);
+        transform: translateX(-1.3rem);
         align-items: center;
     }
 }

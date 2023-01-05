@@ -89,6 +89,9 @@
 			text-transform: uppercase;
 		}
 	}
+	&.condensed {
+		font-family: vars.$font__condensed;
+	}
 	//@include mixins.fontFamily();
 	@include mixins.marginAndPadding();
 	@include mixins.textAlign();

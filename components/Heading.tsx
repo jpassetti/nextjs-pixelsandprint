@@ -8,6 +8,7 @@ type Props = {
     children?: ReactNode,
 	borderTop?: number,
 	color?: string, 
+	condensed?: boolean,
 	fontFamily?: string,
 	fontStyle?: string,
 	fontWeight?: string,
@@ -27,6 +28,7 @@ const Heading = ({
 	borderTop,
 	children, 
 	color="blue", 
+	condensed,
 	fontFamily = "primary",
 	fontStyle = "normal",
 	fontWeight = "bold",
@@ -58,7 +60,8 @@ const Heading = ({
 		[`font-family-${fontFamily}`] : fontFamily,
 		[`font-size-${size}`] : size,
 		[`letter-spacing-${letterSpacing}`] : letterSpacing,
-		[`size-${size}`] : size
+		[`size-${size}`] : size,
+		condensed : condensed,
 	});
 	const Tag = React.createElement(`h${level}`, { className: headingClasses }, children);
   

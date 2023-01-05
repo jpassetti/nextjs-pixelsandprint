@@ -1,0 +1,19 @@
+@use '../sass/abstracts/mixins';
+@use '../sass/abstracts/vars';
+
+
+.span {
+    @include mixins.fontColor();
+    @include mixins.fontWeight();
+    &.font-size-small {
+        font-size: 0.75em;
+    }
+    &.gradient-orange {
+        background: -webkit-linear-gradient(45deg,vars.$color__lightorange, vars.$color__orange 60%,vars.$color__mediumorange 90%);
+        background: linear-gradient(45deg,vars.$color__lightorange, vars.$color__orange 60%,vars.$color__mediumorange 90%);
+        background-clip: text;
+   		-webkit-text-fill-color: transparent;
+		   -webkit-box-decoration-break: clone;
+		   box-decoration-break: clone;
+    }
+}

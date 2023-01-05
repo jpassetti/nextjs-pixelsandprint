@@ -30,7 +30,6 @@ const Bullet = ({width, active, isFocused, isHovered}:Props) => {
         //style={{ enableBackground : 'new 0 0 100 100' }} 
         xmlSpace="preserve"
         className={styles.bullet}
-        width={width}
     >
    <circle className={styles.navyblue} cx="50" cy="50" r="50"/>
    <circle className={orangeClasses} cx="50" cy="50" r="37.5"/>

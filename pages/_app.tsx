@@ -7,7 +7,7 @@ import { ResponsiveContext, SectionContext } from '../lib/context'
 function MyApp( { Component, pageProps } ) {
 	const { width } = useWindowDimensions();
 	const [currentDevice, setCurrentDevice] = useState(null);
-	const [activeSection, setActiveSection] = useState(null);
+	const [activeSection, setActiveSection] = useState("overview");
 
 	const handleWindowResize = () => {
 		//console.log(window.innerWidth);

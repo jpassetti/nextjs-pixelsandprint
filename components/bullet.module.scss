@@ -3,6 +3,10 @@
 
 
 .bullet {
+    width: 1.5rem;
+    @include mixins.breakpoint(laptop) {
+        width: 2rem;
+    }
     .navyblue {
         fill: vars.$color__navyblue;
     }

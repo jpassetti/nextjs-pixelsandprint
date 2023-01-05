@@ -10,15 +10,19 @@ type Props = {
     children?: ReactNode,
 	color?: string,
 	marginBottom?: number,
-    strong?: boolean
+    strong?: boolean,
+    condensed?: boolean,
+    caps?: boolean,
 }
 
-const Paragraph = ({ children, color = 'black', marginBottom, strong }: Props) => {
+const Paragraph = ({ children, color = 'black', marginBottom, strong, condensed, caps }: Props) => {
     const paragraphClasses = cx({
         paragraph: true,
         [`color-${color}`]: color,
         [`margin-bottom-${marginBottom}`]: marginBottom,
-        [`strong`]: strong
+        [`strong`]: strong,
+        [`condensed`]: condensed,
+        [`caps`]: caps,
     });
     return <p className={paragraphClasses}>{children}</p>;
 };

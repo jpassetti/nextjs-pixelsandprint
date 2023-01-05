@@ -80,10 +80,10 @@ const Schedule = () => {
                 <Col xs={8} sm={10}>
                     <Row>
                         <Col xs={12} sm={6}>
-                            <Paragraph strong>{title}</Paragraph>
+                            <Paragraph strong marginBottom={1}>{title}</Paragraph>
                         </Col>
                         <Col xs={12} sm={6}>
-                            <Paragraph>{location.name}<br />
+                            <Paragraph condensed caps>{location.name}<br />
                                 {location.room} {location.building}
                             </Paragraph>
                         </Col>

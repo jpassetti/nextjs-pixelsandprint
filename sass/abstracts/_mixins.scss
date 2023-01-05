@@ -433,3 +433,25 @@
 		}
 	}
 }
+
+@mixin gradients() {	
+	&.gradient-lightorange-to-orange {
+		background: linear-gradient(90deg, vars.$color__lightorange 0%, vars.$color__orange 100%);
+	}
+	&.gradient-orange-to-mediumorange {
+		background: linear-gradient(90deg, vars.$color__orange 0%, vars.$color__mediumorange 100%);
+	}
+	&.gradient-orange-to-darkorange {
+		background: linear-gradient(90deg, vars.$color__orange 0%, vars.$color__darkorange 100%);
+	}
+	&.gradient-mediumorange-to-darkorange {
+		background: linear-gradient(90deg, vars.$color__mediumorange 0%, vars.$color__darkorange 100%);
+	}
+	&.gradient-lightblue-to-mediumblue {
+		background: linear-gradient(90deg, vars.$color__lightblue 0%, vars.$color__mediumblue 100%);
+	}
+	&.gradient-mediumblue-to-navyblue {
+		background: linear-gradient(90deg, vars.$color__mediumblue 0%, vars.$color__navyblue 100%);
+	}
+	
+}
