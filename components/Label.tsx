@@ -6,14 +6,16 @@ let cx = classNames.bind(styles)
 type Props = {
     children: ReactNode, 
     caps?: boolean, 
-    fontColor?: string
+    fontColor?: string,
+    fontWeight?: string,
 }
 
-const Label = ({children, caps, fontColor}:Props) => {
+const Label = ({children, caps, fontColor, fontWeight}:Props) => {
     let labelClasses = cx({
         label: true,
         caps: caps,
-        [`font-color-${fontColor}`]: fontColor
+        [`font-color-${fontColor}`]: fontColor,
+        [`font-weight-${fontWeight}`]: fontWeight
     });
     return <label className={labelClasses}>{children}</label>;
 };

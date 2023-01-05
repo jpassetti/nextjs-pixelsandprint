@@ -2,7 +2,7 @@
 @use '../sass/abstracts/mixins';
 
 .label {
-    font-size: .9rem;
+    font-size: 1rem;
     font-weight: 700;
     font-family: vars.$font__primary;
     margin-bottom: .25rem;
@@ -12,4 +12,5 @@
         letter-spacing: 1px;
     }
     @include mixins.fontColor();
+    @include mixins.fontWeight();
 }

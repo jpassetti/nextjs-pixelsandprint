@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-
 import Heading from './Heading'
 import Image from 'next/image'
 import Paragraph from './Paragraph'
@@ -14,7 +13,7 @@ const CoachCard = ({ coach }) => {
     const { name, title, company, featuredImage, role } = coach;
     let roleClasses = cx({
         coachcard__role: true,
-        [`coachcard__role--${role.toLowerCase()}`]: role
+        [`coachcard__role--${role.slug}`]: role
     });
 
     const variants = {
@@ -35,20 +34,21 @@ const CoachCard = ({ coach }) => {
       };
 
     return <motion.div className={styles.coachcard} variants={variants}>
+     
         <Image 
             src={featuredImage.node.sourceUrl}
             alt={featuredImage.node.altText}
             width={featuredImage.node.mediaDetails.width}
             height={featuredImage.node.mediaDetails.height}
             className={styles.coachcard__image}
-        />
+        /> 
         <div className={styles.coachcard__content}>
-            <Heading level={3} size="small">{name}</Heading>
-            <Paragraph>{title}</Paragraph>
-            <Paragraph><a href={company.url} target="_blank">{company.name}</a></Paragraph>
+            <Heading level={3} size="small" marginBottom={1}>{name}</Heading>
+            <Paragraph marginBottom={1}>{title}</Paragraph>
+            <Paragraph><a style={{ textDecoration: "none"}} href={company.url} target="_blank">{company.name}</a></Paragraph>
         </div>
         <div className={roleClasses}>
-            {role}
+            {role.name}
         </div>
     </motion.div>
 }

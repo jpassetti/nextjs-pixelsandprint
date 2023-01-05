@@ -14,7 +14,7 @@ const Coaches = () => {
         if (activeCategoryIndex === 0) {
             setFilteredPosts(posts);
         } else {
-            setFilteredPosts(posts.filter(post => post.role.toLowerCase() === coachCategories[activeCategoryIndex].slug));
+            setFilteredPosts(posts.filter(post => post.role.slug === coachCategories[activeCategoryIndex].slug));
         }
     }, [activeCategoryIndex]);
 
@@ -24,6 +24,7 @@ const Coaches = () => {
         activeCategory={activeCategoryIndex}
         setActiveCategory={setActiveCategoryIndex}
         format="tabs"
+        filterBy="role"
     />
     <Grid>
         {filteredPosts.map((coach, index) => (

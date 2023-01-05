@@ -5,24 +5,14 @@ import Row from './Row';
 import Select from './Select';
 import Tabs from './Tabs'
 
-const Filters = ({items, format, activeCategory, setActiveCategory}) => {
+const Filters = ({items, format, activeCategory, setActiveCategory, filterBy}) => {
     return <div className={styles.filterBar}>
-            {format === "dropdown" ? <Row paddingTop={2} paddingBottom={2}>
-                <Col xs={12} sm={4}>
-                    <Label>Filter by role:</Label>
-                    <Select options={items} changeHandler={setActiveCategory} />
-                </Col>
-            </Row>
-            : format === "tabs" ? <Row>
-                <Col xs={12}>
-                    <Tabs 
-                    items={items} 
-                    activeTab={activeCategory} 
-                    setActiveTab={setActiveCategory} 
-                    />
-                </Col>
-            </Row>
-            : null}
+            <Label caps fontWeight="400">Filter by {filterBy}</Label>
+            <Tabs 
+                items={items} 
+                activeTab={activeCategory} 
+                setActiveTab={setActiveCategory} 
+            />
         </div> 
 }
 export default Filters;

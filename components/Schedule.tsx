@@ -54,6 +54,7 @@ const Schedule = () => {
             format="tabs" 
             activeCategory={selectedDayIndex}
             setActiveCategory={setSelectedDayIndex} 
+            filterBy="day"
         />
         <Row hideOnMobile>
             <Col sm={2}>
