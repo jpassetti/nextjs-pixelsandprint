@@ -28,7 +28,7 @@ const Accordion = () => {
     </div>
 }
 const Item = ({label, slug, activeSection, setActiveSection}:ItemProps) => {
-    const [isExpanded, setIsExpanded] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(activeSection === slug ? true : false);
     return <Section>
         <Row paddingTop={2} paddingBottom={2}>
             <Col xs={12}>

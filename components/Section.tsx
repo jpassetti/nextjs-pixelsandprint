@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import styles from './section.module.scss';
 
 const Section = ({ children }) => {
     let sectionVariants = {
@@ -23,7 +24,7 @@ const Section = ({ children }) => {
         }
     }
 
-    return <motion.section variants={sectionVariants} animate="open" initial="closed" exit="exit">
+    return <motion.section className={styles.section} variants={sectionVariants} animate="open" initial="closed" exit="exit">
         {children}
     </motion.section>
 }
