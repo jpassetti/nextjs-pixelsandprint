@@ -4,7 +4,15 @@ import styles from './bullet.module.scss'
 
 let cx = classnames.bind(styles)
 
-const Bullet = ({width, active, isFocused, isHovered}) => {
+type Props = {
+    width: number, 
+    active?: boolean, 
+    isFocused?: boolean, 
+    isHovered?: boolean
+}
+
+
+const Bullet = ({width, active, isFocused, isHovered}:Props) => {
     let orangeClasses = cx({
         orange: true,
         active: active,
@@ -19,7 +27,7 @@ const Bullet = ({width, active, isFocused, isHovered}) => {
         x="0px" 
         y="0px"
         viewBox="0 0 100 100" 
-        style={{ enableBackground: `new 0 0 100 100`}} 
+        //style={{ enableBackground : 'new 0 0 100 100' }} 
         xmlSpace="preserve"
         className={styles.bullet}
         width={width}

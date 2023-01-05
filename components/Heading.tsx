@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import React, { Fragment, ReactNode } from 'react'
 import classNames from 'classnames/bind'
 import styles from './heading.module.scss';
 
@@ -7,7 +7,6 @@ let cx = classNames.bind(styles);
 type Props = {
     children?: ReactNode,
 	borderTop?: number,
-	className?: string,
 	color?: string, 
 	fontFamily?: string,
 	fontStyle?: string,
@@ -27,7 +26,6 @@ type Props = {
 const Heading = ({
 	borderTop,
 	children, 
-	className,
 	color="blue", 
 	fontFamily = "primary",
 	fontStyle = "normal",
@@ -42,12 +40,10 @@ const Heading = ({
 	textAlign, 
 	textTransform,
 	size,
-}: Props) => {
-	const Tag = level > 6 ? 'h6' : `h${level}`
-
+  }: Props) => {
 	let headingClasses = cx({
 		heading: true,
-		[`${Tag}`]: level,
+		[`h${level}`]: level,
 		[`text-align-${textAlign}`] : textAlign,
 		[`margin-top-${marginTop}`] : marginTop,
 		[`margin-right-${marginRight}`]: marginRight,
@@ -63,9 +59,10 @@ const Heading = ({
 		[`font-size-${size}`] : size,
 		[`letter-spacing-${letterSpacing}`] : letterSpacing,
 		[`size-${size}`] : size
-
 	});
+	const Tag = React.createElement(`h${level}`, { className: headingClasses }, children);
+  
+	return <Fragment>{Tag}</Fragment>
+  }
 
-	return <Tag className={`${headingClasses} ${className}`}>{children}</Tag>
-}
 export default Heading

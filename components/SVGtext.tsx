@@ -15,8 +15,8 @@ const SVGtext = ({ path, slug, isActive, direction, isFocused, isHovered }) => {
     });
     return <svg 
     x="0px" y="0px"
-    viewBox="0 0 575 106" 
-    style={{ enableBackground: `new 0 0 575 106`}} 
+    viewBox="0 0 700 106" 
+   // style={{ enableBackground: `new 0 0 700 106`}} 
     xmlSpace="preserve"
     >
         <path className={svgTextClasses} d={path} />

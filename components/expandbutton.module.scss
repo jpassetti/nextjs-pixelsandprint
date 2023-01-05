@@ -1,0 +1,24 @@
+@use '../sass/abstracts/vars';
+
+.expandbutton {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    svg {
+        width: 1.5rem;
+        height: auto;
+        transition: all .5s;
+        path {
+            fill: vars.$color__orange;
+            transition: all .5s;
+        }
+    }
+    &.active {
+        svg {
+            transform: rotate(45deg);
+            path {
+                fill: white;
+            }
+        }
+    }
+}

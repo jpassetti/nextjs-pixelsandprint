@@ -3,7 +3,7 @@ import * as styles from './iframe.module.scss';
 
 let cx = classNames.bind(styles);
 
-const Iframe = ({ src, title, aspectRatio }) => {
+const Iframe = ({ src, title, aspectRatio, width, height }) => {
     let embedClasses = cx({
         embedResponsive: true,
         [`embedResponsive${aspectRatio}`]: aspectRatio,
@@ -12,8 +12,8 @@ const Iframe = ({ src, title, aspectRatio }) => {
         <iframe
         src={src}
         title={title}
-        width="560" 
-        height="315"
+        width={width} 
+        height={height}
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
         />

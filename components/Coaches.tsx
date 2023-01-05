@@ -6,24 +6,24 @@ import CoachCard from './CoachCard'
 import { getCoaches, getCoachCategories } from '../lib/api'
 
 const Coaches = () => {
-    const [activeCategory, setActiveCategory] = useState("all");
+    const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
     const [posts, setPosts] = useState(getCoaches());
     const [filteredPosts, setFilteredPosts] = useState(posts);
-
+    let coachCategories = [{name: "All", slug: "all"}, ...getCoachCategories()];
     useEffect(() => {
-        if (activeCategory === "all") {
+        if (activeCategoryIndex === 0) {
             setFilteredPosts(posts);
         } else {
-            setFilteredPosts(posts.filter(post => post.role.toLowerCase() === activeCategory));
+            setFilteredPosts(posts.filter(post => post.role.toLowerCase() === coachCategories[activeCategoryIndex].slug));
         }
-    }, [activeCategory]);
+    }, [activeCategoryIndex]);
 
     return <Fragment>
     <Filters 
-        items={getCoachCategories()} 
-        activeCategory={activeCategory}
-        setActiveCategory={setActiveCategory}
-        format="dropdown"
+        items={coachCategories} 
+        activeCategory={activeCategoryIndex}
+        setActiveCategory={setActiveCategoryIndex}
+        format="tabs"
     />
     <Grid>
         {filteredPosts.map((coach, index) => (

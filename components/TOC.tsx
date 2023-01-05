@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { motion, AnimatePresence  } from 'framer-motion';
 import Bullet from './Bullet';
 import Col from './Col';
 import Container from "./Container";
 import Row from './Row';
 import Section from './Section';
-
+import { SectionContext } from '../lib/context'
 import {getItems} from '../lib/api'
 
 import SVGtext from './SVGtext';
@@ -19,7 +19,7 @@ import styles from './toc.module.scss'
 let cx = classnames.bind(styles)
 
 const TOC = () => {
-    const [activeItem, setActiveItem] = useState("about");
+    const [activeSection, setActiveSection] = useContext(SectionContext);
     const [focusedItem, setFocusedItem] = useState(null);
     const [hoveredItem, setHoveredItem] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -36,9 +36,9 @@ const TOC = () => {
                 return (
                 <li
                     key={index}
-                    className={slug === activeItem ? styles.active : ""}
+                    className={slug === activeSection ? styles.active : ""}
                     onClick={() => {
-                        setActiveItem(slug)
+                        setActiveSection(slug)
                         setCurrentIndex(index)
                     }}
                     tabIndex={0}
@@ -50,7 +50,7 @@ const TOC = () => {
                     }}
                     onKeyDown={(e) => {
                         if (e.key === "Enter") {
-                            setActiveItem(slug);
+                            setActiveSection(slug);
                             setCurrentIndex(index)
                         }
                     }}
@@ -59,14 +59,14 @@ const TOC = () => {
                 >
                      <Bullet 
                         width={32} 
-                        active={slug === activeItem ? true : false} 
+                        active={slug === activeSection ? true : false} 
                         isFocused={slug === focusedItem ? true : false}
                         isHovered={slug === hoveredItem ? true : false}
                     />
                     <SVGtext 
                         path={path}
                         slug={slug} 
-                        isActive={slug === activeItem ? true : false} 
+                        isActive={slug === activeSection ? true : false} 
                         isFocused={slug === focusedItem ? true : false}
                         isHovered={slug === hoveredItem ? true : false}
                         direction={direction}
@@ -79,8 +79,8 @@ const TOC = () => {
         </div>
         <div className={styles.tocRight}>
             <AnimatePresence>
-                {activeItem && <Section key={activeItem}>
-                    {getSectionContent(activeItem)}
+                {activeSection && <Section key={activeSection}>
+                    {getSectionContent(activeSection)}
                 </Section>}
             </AnimatePresence>
         </div>

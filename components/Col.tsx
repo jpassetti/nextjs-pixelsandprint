@@ -7,14 +7,15 @@ let cx = classnames.bind(styles)
 
 type Props = {
     children?: ReactNode,
-	lg?: string,
-	md?: string,
-	sm?: string,
+	lg?: number,
+	md?: number,
+	sm?: number,
 	textAlign?: string,
-	xs?: string,
+	xs?: number,
 	borderRight?: number,
 	paddingLeft?: number,
-	paddingBottom?: number
+	paddingBottom?: number,
+	borderColor?: string
 }
 
 export default function Col({ 
@@ -26,7 +27,8 @@ export default function Col({
 	xs, 
 	borderRight,
 	paddingLeft,
-	paddingBottom
+	paddingBottom,
+	borderColor
 }:Props) {
 	const colClasses = cx({
 		col : true,
@@ -37,7 +39,8 @@ export default function Col({
 		[`text-align-${textAlign}`] : textAlign,
 		[`border-right-${borderRight}`] : borderRight,
 		[`padding-left-${paddingLeft}`] : paddingLeft,
-		[`padding-bottom-${paddingBottom}`] : paddingBottom
+		[`padding-bottom-${paddingBottom}`] : paddingBottom,
+		[`border-color-${borderColor}`] : borderColor
 	
 	})
 	return (

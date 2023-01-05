@@ -56,13 +56,13 @@ const Schedule = () => {
             setActiveCategory={setSelectedDayIndex} 
         />
         <Row hideOnMobile>
-            <Col sm="2">
+            <Col sm={2}>
                 <Label caps fontColor="orange">Time</Label>
             </Col>
-            <Col sm="5">
+            <Col sm={5}>
                 <Label caps fontColor="orange">Event title</Label>
             </Col>
-            <Col sm="5">
+            <Col sm={5}>
                 <Label caps fontColor="orange">Location</Label>
             </Col>
         </Row>
@@ -73,15 +73,15 @@ const Schedule = () => {
             const hours = moment(time.start).format("h");
             return <motion.div variants={variants} key={`${slug}_${index}_${hours}`}>
                     <Row borderBottom={1} borderBottomColor="lightblue" paddingTop={2} paddingBottom={2}>
-                <Col xs="4" sm="2">
+                <Col xs={4} sm={2}>
                     <Paragraph>{formattedTime}</Paragraph>
                 </Col>
-                <Col xs="8" sm="10">
+                <Col xs={8} sm={10}>
                     <Row>
-                        <Col xs="12" sm="6">
+                        <Col xs={12} sm={6}>
                             <Paragraph strong>{title}</Paragraph>
                         </Col>
-                        <Col xs="12" sm="6">
+                        <Col xs={12} sm={6}>
                             <Paragraph>{location.name}<br />
                                 {location.room} {location.building}
                             </Paragraph>

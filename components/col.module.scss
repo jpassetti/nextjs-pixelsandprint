@@ -22,4 +22,5 @@ $sizes: xs, sm, md, lg;
 	&.border-right-1 {
 		border-right: 2px dashed vars.$color__orange;
 	}
+	@include mixins.borderColor();
 }

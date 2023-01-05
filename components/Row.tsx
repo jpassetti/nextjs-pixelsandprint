@@ -8,6 +8,7 @@ let cx = classnames.bind(styles)
 type Props = {
     children?: ReactNode,
 	alignItems?: string,
+	marginBottom?: number,
 	minHeight?: boolean,
 	paddingBottom?: number,
 	paddingTop?: number,
@@ -19,6 +20,7 @@ type Props = {
 export default function Row({ 
 	children,
 	alignItems,
+	marginBottom,
 	minHeight,
 	paddingBottom,
 	paddingTop,
@@ -30,6 +32,7 @@ export default function Row({
 	const rowClasses = cx({
 		row : true,
 		[`align-items-${alignItems}`]: alignItems,
+		[`margin-bottom-${marginBottom}`]: marginBottom,
 		[`min-height`] : minHeight,
 		[`padding-bottom-${paddingBottom}`] : paddingBottom,
 		[`padding-top-${paddingTop}`] : paddingTop,

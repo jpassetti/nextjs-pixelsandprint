@@ -19,7 +19,7 @@ const Logo = ({entity, width, marginBottom, variant }:Props) => {
     x="0px" 
     y="0px"
     viewBox={`0 0 257.43 125.09`}
-    style={{ enableBackground: "new 0 0 257.43 125.09"}}
+   // style={{ enableBackground: "new 0 0 257.43 125.09"}}
     xmlSpace="preserve"
     width={width}
     className={logoClasses}
@@ -124,7 +124,7 @@ const Logo = ({entity, width, marginBottom, variant }:Props) => {
     x="0px" 
     y="0px"
     viewBox="0 0 317.7 87.7" 
-    style={{ enableBackground: `new 0 0 317.7 87.7;` }} 
+   // style={{ enableBackground: `new 0 0 317.7 87.7;` }} 
     xmlSpace="preserve"
     className={logoClasses}
     >
@@ -240,8 +240,12 @@ const Logo = ({entity, width, marginBottom, variant }:Props) => {
        C28.9,12.5,28.9,19.1,28.9,19.1z"/>
 
 </svg>
-    : entity === "pixels-and-print" ? <svg x="0px" y="0px"
-    viewBox="0 0 412.04 44.55" style={{ enableBackground: "new 0 0 412.04 44.55;"}} xmlSpace="preserve">
+    : entity === "pixels-and-print" ? <svg 
+    x="0px" 
+    y="0px"
+    viewBox="0 0 412.04 44.55" 
+    //style={{ enableBackground: "new 0 0 412.04 44.55;"}} 
+    xmlSpace="preserve">
 
 <path className={styles.pixels} d="M9.34,43.4H0V1.16h17.53c8.32,0,14.78,5.25,14.78,13.82c0,8.58-6.46,13.82-14.78,13.82H9.34V43.4z M16.45,20.74
    c4.1,0,6.14-2.05,6.14-5.76c0-3.65-2.05-5.7-6.14-5.7h-7.1v11.46H16.45z M36.4,43.4V1.16h9.34V43.4C45.74,43.4,36.4,43.4,36.4,43.4z
