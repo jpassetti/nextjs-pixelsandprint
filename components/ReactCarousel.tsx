@@ -87,13 +87,13 @@ const ReactCarousel = ({children, totalSlides, colorMode="light"}) => {
 			{children}
 		</Slider>
 	
-		{(currentDevice === "xs" || currentDevice === "sm") &&
+		{/*(currentDevice === "xs" || currentDevice === "sm") &&
 		<DotGroup
 			className={dotGroupClasses}
 			showAsSelectedForCurrentSlideOnly
 			disableActiveDots
 		/>
-		}
+*/}
 
 	</CarouselProvider>
 }
