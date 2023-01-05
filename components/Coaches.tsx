@@ -22,6 +22,16 @@ const Coaches = () => {
         }
     }, [activeCategoryIndex]);
 
+    const alphabetizeNames = (a, b) => {
+        if (a.name.last < b.name.last) {
+            return -1;
+        }
+        if (a.name.last > b.name.last) {
+            return 1;
+        }
+        return 0;
+    }
+
     return <Fragment>
     <Filters 
         items={coachCategories} 
@@ -38,7 +48,7 @@ const Coaches = () => {
     </ReactCarousel>
     :  
         <Grid>
-            {filteredPosts.map((coach, index) => (
+            {filteredPosts.sort(alphabetizeNames).map((coach, index) => (
                 <CoachCard key={index} coach={coach} />
             ))}
         </Grid>
