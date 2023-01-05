@@ -6,7 +6,10 @@
     @include mixins.fontColor();
     @include mixins.fontWeight();
     &.font-size-small {
-        font-size: 0.75em;
+        font-size: 0.5em;
+        @include mixins.breakpoint(laptop) {
+            font-size: .8em;
+        }
     }
     &.gradient-orange {
         background: -webkit-linear-gradient(45deg,vars.$color__lightorange, vars.$color__orange 60%,vars.$color__mediumorange 90%);
