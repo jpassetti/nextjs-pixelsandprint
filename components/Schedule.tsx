@@ -17,7 +17,7 @@ const Schedule = () => {
 
     useEffect(() => {
         const filteredEvents = events.filter((event) => {
-            return event.time.start > days[selectedDayIndex].time.start && event.time.end < days[selectedDayIndex].time.end;
+            return event.time.start > days[selectedDayIndex].time.start && event.time.start < days[selectedDayIndex].time.end;
         });
         setFilteredEvents(filteredEvents);
     }, [selectedDayIndex]);
