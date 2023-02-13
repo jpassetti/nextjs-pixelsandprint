@@ -5,7 +5,7 @@ import Col from './Col';
 import Label from './Label';
 import Paragraph from './Paragraph';
 import Section from './Section';
-import {getDays, getEvents} from '../lib/api';
+import {getDays, getEvents, getRoomBySlug, getFormattedTime} from '../lib/api';
 import Filters from './Filters';
 import Row from './Row';
 
@@ -57,10 +57,10 @@ const Schedule = () => {
             filterBy="day"
         />
         <Row hideOnMobile>
-            <Col sm={2}>
+            <Col sm={3}>
                 <Label caps fontColor="orange">Time</Label>
             </Col>
-            <Col sm={5}>
+            <Col sm={4}>
                 <Label caps fontColor="orange">Event title</Label>
             </Col>
             <Col sm={5}>
@@ -70,22 +70,24 @@ const Schedule = () => {
         <motion.div variants={parentVariants}>
         {filteredEvents?.map((event, index) => {
             const {title, time, location, slug} = event;
-            const formattedTime = moment(time.start).format("h:mm a");
+            const formattedTime = getFormattedTime(time.start, time.end);
             const hours = moment(time.start).format("h");
+            const room = getRoomBySlug(location);
+            const { name, building, room: roomNumber } = room;
             return <motion.div variants={variants} key={`${slug}_${index}_${hours}`}>
                     <Row borderBottom={1} borderBottomColor="lightblue" paddingTop={2} paddingBottom={2}>
-                <Col xs={4} sm={2}>
+                <Col xs={4} sm={3}>
                     <Paragraph>{formattedTime}</Paragraph>
                 </Col>
-                <Col xs={8} sm={10}>
+                <Col xs={8} sm={9}>
                     <Row>
                         <Col xs={12} sm={6}>
                             <Paragraph strong marginBottom={1}>{title}</Paragraph>
                         </Col>
                         <Col xs={12} sm={6}>
-                            <Paragraph condensed caps>{location.name}<br />
-                                {location.room} {location.building}
-                            </Paragraph>
+                            <Paragraph condensed caps>{name}<br />
+                                {roomNumber} {building}
+                         </Paragraph>
                         </Col>
                     </Row>
                 </Col>
