@@ -57,15 +57,19 @@ const Schedule = () => {
             filterBy="day"
         />
         <Row hideOnMobile>
-            <Col sm={3}>
-                <Label caps fontColor="orange">Time</Label>
-            </Col>
-            <Col sm={4}>
-                <Label caps fontColor="orange">Event title</Label>
-            </Col>
-            <Col sm={5}>
-                <Label caps fontColor="orange">Location</Label>
-            </Col>
+        <Col xs={4} sm={3}>
+        <Label caps fontColor="orange">Time</Label>
+                </Col>
+                <Col xs={8} sm={9}>
+                    <Row>
+                        <Col xs={12} sm={6}>
+                        <Label caps fontColor="orange">Event title</Label>
+                        </Col>
+                        <Col xs={12} sm={6}>
+                        <Label caps fontColor="orange">Location</Label>
+                        </Col>
+                    </Row>
+                </Col>
         </Row>
         <motion.div variants={parentVariants}>
         {filteredEvents?.map((event, index) => {

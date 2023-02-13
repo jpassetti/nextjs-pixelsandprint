@@ -15,10 +15,10 @@ type Props = {
     caps?: boolean,
 }
 
-const Paragraph = ({ children, color = 'black', marginBottom, strong, condensed, caps }: Props) => {
+const Paragraph = ({ children, color, marginBottom, strong, condensed, caps }: Props) => {
     const paragraphClasses = cx({
         paragraph: true,
-        [`color-${color}`]: color,
+        [`font-color-${color}`]: color,
         [`margin-bottom-${marginBottom}`]: marginBottom,
         [`strong`]: strong,
         [`condensed`]: condensed,
