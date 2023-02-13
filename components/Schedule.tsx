@@ -78,7 +78,7 @@ const Schedule = () => {
             const hours = moment(time.start).format("h");
             const room = getRoomBySlug(location);
             const { name, building, room: roomNumber } = room;
-            return <motion.div variants={variants} key={`${slug}_${index}_${hours}`}>
+            return <motion.div variants={variants} key={`${slug}_${index}_${location}`}>
                     <Row borderBottom={1} borderBottomColor="lightblue" paddingTop={2} paddingBottom={2}>
                 <Col xs={4} sm={3}>
                     <Paragraph>{formattedTime}</Paragraph>

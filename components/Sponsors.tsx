@@ -39,7 +39,7 @@ const Sponsors = () => {
                         alt={featuredImage.node.altText}
                         width={featuredImage.node.mediaDetails.width}
                         height={featuredImage.node.mediaDetails.height}
-                        layout="responsive"
+                        className={styles.sponsorImage}
                     />
                     </a>
                     <Heading level={4} color="white" marginTop={1}>{name}</Heading>
