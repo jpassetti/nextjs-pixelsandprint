@@ -15,8 +15,8 @@ const Homepage = () => {
 
   return <Fragment>
     <Head>
-      <title>Pixels & Print Workshop | Newhouse School at Syracuse University</title>
-      <meta name="description" content="Pixels & Print is a design workshop for the students in the graphic design program at the S.I. Newhouse School of Public Communications at Syracuse University." />
+      <title>Pixels &amp; Print Workshop | Newhouse School at Syracuse University</title>
+      <meta name="description" content="Pixels &amp; Print is a design workshop for the students in the graphic design program at the S.I. Newhouse School of Public Communications at Syracuse University." />
     </Head>
     <Container>
       <Row minHeight>
