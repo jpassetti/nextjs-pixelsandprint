@@ -36,7 +36,8 @@ const CoachCard = ({ coach }) => {
       };
 
     return <motion.div className={styles.coachcard} variants={variants}>
-     
+      
+      {featuredImage &&
         <Image 
             src={featuredImage.node.sourceUrl}
             alt={featuredImage.node.altText}
@@ -44,10 +45,11 @@ const CoachCard = ({ coach }) => {
             height={featuredImage.node.mediaDetails.height}
             className={styles.coachcard__image}
         /> 
+      }
         <div className={styles.coachcard__content}>
             <Heading level={3} size="small" marginBottom={1}>{name.first}<br />{name.last}</Heading>
-            <Paragraph marginBottom={1}>{title}</Paragraph>
-            <Paragraph caps condensed><a style={{ textDecoration: "none", color: "inherit"}} href={company.url} target="_blank">{company.name}</a></Paragraph>
+            {title && <Paragraph marginBottom={1}>{title}</Paragraph>}
+            {company && <Paragraph caps condensed><a style={{ textDecoration: "none", color: "inherit"}} href={company.url} target="_blank">{company.name}</a></Paragraph>}
         </div>
         <div className={roleClasses}>
             {role.name}
