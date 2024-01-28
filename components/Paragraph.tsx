@@ -10,6 +10,7 @@ type Props = {
     children?: ReactNode,
 	color?: string,
 	marginBottom?: number,
+    marginTop?: number,
     strong?: boolean,
     condensed?: boolean,
     caps?: boolean,
