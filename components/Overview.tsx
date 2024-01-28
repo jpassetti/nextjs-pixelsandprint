@@ -19,7 +19,7 @@ const Overview = () => {
         <Span gradient="orange">social impact.</Span></Heading>
         <Dashes />
         <Heading level={3} color="white" textTransform="uppercase" marginBottom={4} condensed>
-        February 22-24, 2024</Heading>
+        Feb. 22-24, 2024</Heading>
         <Paragraph marginBottom={6}>Workshop is limited to students in the graphic design program at the Newhouse School.</Paragraph>
        
        <ButtonGroup>
