@@ -3,7 +3,14 @@ import * as styles from './iframe.module.scss';
 
 let cx = classNames.bind(styles);
 
-const Iframe = ({ src, title, aspectRatio, width, height }) => {
+const Iframe = ({ 
+    aspectRatio,
+    height,
+    platform,
+    src, 
+    title,  
+    width
+}) => {
     let embedClasses = cx({
         embedResponsive: true,
         [`embedResponsive${aspectRatio}`]: aspectRatio,
