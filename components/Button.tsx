@@ -2,9 +2,23 @@ import classnames from 'classnames/bind'
 
 import styles from './button.module.scss'
 
-let cx = classnames.bind(styles)
+let cx = classnames.bind(styles);
 
-const Button = ({label, inverse, type, gradient, clickHandler}) => {
+interface ButtonProps {
+    label: string;
+    inverse?: boolean; // 
+    type?: string;
+    gradient?: boolean;
+    clickHandler?: () => void; // assuming it's a function that takes no arguments and returns nothing
+}
+
+const Button: React.FC<ButtonProps> = ({ 
+    label, 
+    inverse, 
+    type, 
+    gradient, 
+    clickHandler 
+}) => {
     let buttonClasses = cx({
         button: true,
         inverse: inverse,
