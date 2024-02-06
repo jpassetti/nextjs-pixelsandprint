@@ -1,31 +1,19 @@
-import { motion } from 'framer-motion';
-import styles from './section.module.scss';
+import { ReactNode } from "react";
+import { motion } from "framer-motion";
+import styles from "./section.module.scss";
 
-const Section = ({ children }) => {
-    let sectionVariants = {
-        closed: {
-            opacity: 0,
-            x: 25,
-        },
-        open: {
-            opacity: 1,
-            x: 0,
-            transition: {
-                duration: 0.5,
-                delay: 0.5,
-            }
-        },
-        exit: {
-            opacity: 0,
-            x: 25,
-            transition: {
-                duration: 0.5,
-            }
-        }
-    }
-
-    return <motion.section className={styles.section} variants={sectionVariants} animate="open" initial="closed" exit="exit">
-        {children}
-    </motion.section>
+// Define a type for the component's props
+interface SectionProps {
+  children: ReactNode; // ReactNode is used for typing anything that React can render
+  id?: string; // The '?' makes the 'id' prop optional
 }
-export default Section
+
+const Section = ({ children, id }: SectionProps) => {
+  return (
+    <section id={id ? id : ""} className={styles.section}>
+      {children}
+    </section>
+  );
+};
+
+export default Section;

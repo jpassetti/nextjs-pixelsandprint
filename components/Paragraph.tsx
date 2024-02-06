@@ -14,9 +14,10 @@ type Props = {
     strong?: boolean,
     condensed?: boolean,
     caps?: boolean,
+    textAlign?: string,
 }
 
-const Paragraph = ({ children, color, marginBottom, marginTop, strong, condensed, caps }: Props) => {
+const Paragraph = ({ children, color, marginBottom, marginTop, strong, condensed, caps, textAlign }: Props) => {
     const paragraphClasses = cx({
         paragraph: true,
         [`font-color-${color}`]: color,
@@ -25,6 +26,7 @@ const Paragraph = ({ children, color, marginBottom, marginTop, strong, condensed
         [`strong`]: strong,
         [`condensed`]: condensed,
         [`caps`]: caps,
+        [`text-align-${textAlign}`] : textAlign,
     });
     return <p className={paragraphClasses}>{children}</p>;
 };

@@ -126,6 +126,7 @@ const Logo = ({entity, width, marginBottom, variant }:Props) => {
     viewBox="0 0 317.7 87.7" 
    // style={{ enableBackground: `new 0 0 317.7 87.7;` }} 
     xmlSpace="preserve"
+    width={width}
     className={logoClasses}
     >
 <path className={styles.SUwordmark} d="M60.1,26.1l-1.3-6.2l1.7-0.6c1,2.3,3.1,5.2,6.8,5.2c2.3,0,4.7-1.3,4.7-4.3c0-5.7-12-4.5-12-11.7
@@ -244,6 +245,7 @@ const Logo = ({entity, width, marginBottom, variant }:Props) => {
     x="0px" 
     y="0px"
     viewBox="0 0 412.04 44.55" 
+    width={width}
     //style={{ enableBackground: "new 0 0 412.04 44.55;"}} 
     xmlSpace="preserve">
 

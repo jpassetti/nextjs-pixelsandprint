@@ -7,19 +7,19 @@
 	margin: 0px auto;
 	width: 100%;
 	@include mixins.breakpoint(sm) {
-		//width: 700px;
+		width: 700px;
 	}
 
 	@include mixins.breakpoint(md) {
-		//width: 980px;
+		width: 980px;
 	}
 
 	@include mixins.breakpoint(lg) {
-		//width: 1140px;
+		width: 1140px;
 	}
 
 	@include mixins.breakpoint(xl) {
-		//width: 1260px;
+		width: 1260px;
 	}
 
 	&.content {

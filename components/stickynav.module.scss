@@ -1,0 +1,12 @@
+@use "../sass/abstracts/vars";
+@use "../sass/abstracts/mixins";
+
+.stickynav {
+  width: 100%;
+  background-color: vars.$color__navyblue;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-top: 1px solid vars.$color__lightblue;
+  border-bottom: 1px solid vars.$color__lightblue;
+}

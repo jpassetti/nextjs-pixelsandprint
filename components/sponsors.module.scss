@@ -1,7 +1,13 @@
 .sponsor {
-    text-align: center;
+  text-align: center;
+  background-color: #fff;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .sponsorImage {
-    width: 100%;
-    height: auto;
+  // width: 100%;
+  // height: auto;
 }

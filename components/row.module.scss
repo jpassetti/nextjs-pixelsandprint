@@ -6,6 +6,7 @@
 	flex-wrap: wrap;
 	margin: 0 -.5rem;
 	@include mixins.alignItems();
+	@include mixins.justifyContents();
 	@include mixins.marginAndPadding();
 	@include mixins.borderBottom();
 	@include mixins.borderBottomColor();

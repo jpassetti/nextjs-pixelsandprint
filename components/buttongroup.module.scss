@@ -1,4 +1,9 @@
+@use '../sass/abstracts/vars';
+@use '../sass/abstracts/mixins';
+
+
 .button_group {
     display: flex;
     gap: 1rem;
+    @include mixins.justifyContents();
 }

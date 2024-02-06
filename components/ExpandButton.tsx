@@ -1,16 +1,29 @@
-import classnames from 'classnames/bind'
-import Icon from './Icon'
-import styles from './expandbutton.module.scss'
+import classnames from "classnames/bind";
+import Icon from "./Icon";
+import styles from "./expandbutton.module.scss";
 
-let cx = classnames.bind(styles)
+let cx = classnames.bind(styles);
 
-const ExpandButton = ({clickHandler, isActive}) => {
-    let expandButtonClasses = cx({
-        expandbutton: true,
-        active: isActive
-    });
-    return <button onClick={clickHandler} className={expandButtonClasses}>
-        <Icon icon="plus" />
-    </button>
+// Define the types for the component's props
+interface ExpandButtonProps {
+  clickHandler: () => void; // Assuming clickHandler is a function that takes no arguments and returns nothing
+  isActive: boolean;
 }
-export default ExpandButton
+
+const ExpandButton: React.FC<ExpandButtonProps> = ({
+  clickHandler,
+  isActive,
+}) => {
+  let expandButtonClasses = cx({
+    expandbutton: true,
+    active: isActive,
+  });
+
+  return (
+    <button onClick={clickHandler} className={expandButtonClasses}>
+      <Icon icon="plus" />
+    </button>
+  );
+};
+
+export default ExpandButton;

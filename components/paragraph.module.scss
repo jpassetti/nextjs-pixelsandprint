@@ -16,4 +16,5 @@
     }
     @include mixins.fontColor();
     @include mixins.marginAndPadding();
+    @include mixins.textAlign();
 }
