@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 
 import Container from "./Container";
+import EventListItem from "./EventListItem";
 import Section from "./Section";
-import { getDays, getEvents } from "../lib/api";
+import { getDays, getEvents, getDaysByYear, getEventsByDay } from "../lib/api";
 import Filters from "./Filters";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
@@ -21,6 +22,8 @@ interface Event {
 }
 
 interface Day {
+  name: string;
+  slug: string;
   time: {
     start: Date;
     end: Date;
@@ -28,20 +31,16 @@ interface Day {
 }
 
 const Schedule: React.FC = () => {
-  //  // const days: Day[] = getDays();
-  //   //const events: Event[] = getEvents();
-  //   const [selectedDayIndex, setSelectedDayIndex] = useState<number>(0);
-  //   const [filteredEvents, setFilteredEvents] = useState<Event[]>(events);
-
-  //   useEffect(() => {
-  //     const filteredEvents = events.filter((event) => {
-  //       return (
-  //         event.time.start > days[selectedDayIndex].time.start &&
-  //         event.time.start < days[selectedDayIndex].time.end
-  //       );
-  //     });
-  //     setFilteredEvents(filteredEvents);
-  //   }, [selectedDayIndex, events, days]);
+  const [selectedDayIndex, setSelectedDayIndex] = useState(0);
+  const [events, setEvents] = useState([]);
+  
+  const days: Day[] = getDaysByYear(2024);
+    
+    useEffect(() => {
+      console.log('selectedDayIndex', selectedDayIndex);
+      const events = getEventsByDay(days[selectedDayIndex].time.start, days[selectedDayIndex].time.end);
+      setEvents(events);
+    }, [selectedDayIndex]);
 
   return (
     <Section id="schedule">
@@ -54,18 +53,20 @@ const Schedule: React.FC = () => {
       >
         Schedule
       </Heading>
-      <Paragraph textAlign="center" color="white">
-        The schedule will be published soon.
-      </Paragraph>
+
       <Container type="content">
-        {/*<Filters
+        <Filters
           items={days}
           format="tabs"
-          activeCategory={selectedDayIndex}
-          setActiveCategory={setSelectedDayIndex}
+          activeTabIndex={selectedDayIndex}
+          setActiveTabIndex={setSelectedDayIndex}
           filterBy="day"
-  />*/}
-        {/* Your JSX here */}
+        />
+        <div>
+            {events?.map((event, index) => {
+              return <EventListItem event={event} />
+            })}
+          </div>
       </Container>
     </Section>
   );

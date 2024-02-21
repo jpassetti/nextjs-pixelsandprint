@@ -12,18 +12,18 @@ interface Item {
 }
 
 interface FiltersProps {
-  items: Item[];
-  format: string; // Assuming format is a string, adjust if it's meant to be something else
-  activeCategory: string; // or number, depending on your identifiers
-  setActiveCategory: (category: string) => void; // Adjust the type of category based on your actual usage
+  items: any[]; // You can replace `any` with the specific type of your items array
+  format: string;
+  activeTabIndex: number; // Replace `any` with the specific type of your activeCategory object
+  setActiveTabIndex: (category: any) => void; // Replace `any` with the specific type of your setActiveCategory function argument
   filterBy: string;
 }
 
 const Filters: React.FC<FiltersProps> = ({
   items,
   format,
-  activeCategory,
-  setActiveCategory,
+  activeTabIndex,
+  setActiveTabIndex,
   filterBy,
 }) => {
   return (
@@ -33,8 +33,8 @@ const Filters: React.FC<FiltersProps> = ({
       </Label>
       <Tabs
         items={items}
-        activeTab={activeCategory}
-        setActiveTab={setActiveCategory}
+        activeTab={activeTabIndex}
+        setActiveTab={setActiveTabIndex}
       />
     </div>
   );
