@@ -19,6 +19,7 @@ const Coaches: React.FC<CoachesProps> = ({ year }) => {
 
   useEffect(() => {
     const coachesByYear = getCoachesByYear(year);
+    coachesByYear.sort((a, b) => a.name.last.localeCompare(b.name.last));
     setCoaches(coachesByYear);
   }, [year]);
   
