@@ -1,8 +1,17 @@
 import Col from './Col';
 import Paragraph from './Paragraph';
 import Row from './Row';
-import Strong from './Strong';
 import { getFormattedTime, getRoomBySlug } from '../lib/api';
+
+interface Event {
+    title: string;
+    time: {
+      start: string;
+      end: string;
+    };
+    location: string;
+    slug: string;
+  }
 
 const EventListItem: React.FC<{ event: Event }> = ({ event }) => {
     const { title, time, location, slug } = event;

@@ -1,21 +1,19 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-
+import React, { useState, useEffect } from "react";
 import Container from "./Container";
 import EventListItem from "./EventListItem";
 import Section from "./Section";
-import { getDays, getEvents, getDaysByYear, getEventsByDay } from "../lib/api";
+import { getDaysByYear, getEventsByDay } from "../lib/api";
 import Filters from "./Filters";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
 
-// Assuming the structure of your events and days
 interface Event {
   title: string;
   time: {
-    start: Date;
-    end: Date;
+    start: string;
+    end: string;
   };
   location: string;
   slug: string;
@@ -25,22 +23,24 @@ interface Day {
   name: string;
   slug: string;
   time: {
-    start: Date;
-    end: Date;
+    start: string; // Assuming start and end are string representations of date-time
+    end: string;
   };
 }
 
 const Schedule: React.FC = () => {
-  const [selectedDayIndex, setSelectedDayIndex] = useState(0);
-  const [events, setEvents] = useState([]);
-  
-  const days: Day[] = getDaysByYear(2024);
-    
-    useEffect(() => {
-      console.log('selectedDayIndex', selectedDayIndex);
-      const events = getEventsByDay(days[selectedDayIndex].time.start, days[selectedDayIndex].time.end);
-      setEvents(events);
-    }, [selectedDayIndex]);
+  const [selectedDayIndex, setSelectedDayIndex] = useState<number>(0);
+  const [events, setEvents] = useState<Event[]>([]); // Explicitly typed as an array of Event
+
+  const days = getDaysByYear(2024) as Day[];
+
+  useEffect(() => {
+    const events = getEventsByDay(
+      days[selectedDayIndex].time.start,
+      days[selectedDayIndex].time.end
+    );
+    setEvents(events);
+  }, [selectedDayIndex, days]);
 
   return (
     <Section id="schedule">
@@ -63,10 +63,10 @@ const Schedule: React.FC = () => {
           filterBy="day"
         />
         <div>
-            {events?.map((event, index) => {
-              return <EventListItem event={event} />
-            })}
-          </div>
+          {events?.map((event, index) => {
+            return <EventListItem key={index} event={event} />;
+          })}
+        </div>
       </Container>
     </Section>
   );
