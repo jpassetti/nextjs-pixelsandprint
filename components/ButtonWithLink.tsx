@@ -26,8 +26,8 @@ const ButtonWithLink: React.FC<ButtonWithLinkProps> = ({
 
   // Note: Next.js Link component does not accept className directly. It should be passed to an <a> tag inside Link
   return (
-    <Link href={href} passHref>
-      <a className={buttonClasses}>{label}</a>
+    <Link href={href} className={buttonClasses} passHref>
+      {label}
     </Link>
   );
 };

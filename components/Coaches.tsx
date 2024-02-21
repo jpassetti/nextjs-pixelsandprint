@@ -1,31 +1,27 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Heading from "./Heading";
+import CoachCard from "./CoachCard";
 import Container from "./Container";
+import Grid from "./Grid";
 import Paragraph from "./Paragraph";
 import Section from "./Section";
 
-import { getCoaches, getCoachCategories } from "../lib/api";
+import { getCoachesByYear } from "../lib/api";
 
-const Coaches = () => {
-  const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
-  const [posts, setPosts] = useState(getCoaches());
-  const [filteredPosts, setFilteredPosts] = useState(posts);
-  let coachCategories = [{ name: "All", slug: "all" }, ...getCoachCategories()];
+interface CoachesProps {
+  year: number; // Assuming year is a number, adjust the type accordingly
+}
+
+const Coaches: React.FC<CoachesProps> = ({ year }) => {
+  const [coaches, setCoaches] = useState([]);
 
   useEffect(() => {
-    if (activeCategoryIndex === 0) {
-      setFilteredPosts(posts);
-    } else {
-      setFilteredPosts(
-        posts.filter(
-          (post) => post.role.slug === coachCategories[activeCategoryIndex].slug
-        )
-      );
-    }
-  }, [activeCategoryIndex]);
-
+    const coachesByYear = getCoachesByYear(year);
+    setCoaches(coachesByYear);
+  }, [year]);
+  
   return (
     <Section id="coaches">
       <Heading
@@ -38,9 +34,11 @@ const Coaches = () => {
         Coaches
       </Heading>
       <Container type="content">
-        <Paragraph textAlign="center" color="white">
-          The list of coaches will be published soon.
-        </Paragraph>
+        <Grid>
+          {coaches?.map((coach, index) => {
+            return <CoachCard key={index} coach={coach} />
+        })}
+        </Grid>
       </Container>
     </Section>
   );

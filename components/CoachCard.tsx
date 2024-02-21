@@ -45,6 +45,8 @@ const CoachCard: React.FC<CoachCardProps> = ({ coach }) => {
     [`gradient-lightorange-to-orange`]: role.slug === "uiux",
     [`gradient-mediumorange-to-darkorange`]: role.slug === "motion",
     [`gradient-lightblue-to-mediumblue`]: role.slug === "print",
+    [`gradient-lightviolet-to-violet`]: role.slug === "immersive",
+
   });
 
   const variants = {

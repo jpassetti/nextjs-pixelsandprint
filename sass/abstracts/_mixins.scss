@@ -471,5 +471,8 @@
 	&.gradient-mediumblue-to-navyblue {
 		background: linear-gradient(90deg, vars.$color__mediumblue 0%, vars.$color__navyblue 100%);
 	}
+	&.gradient-lightviolet-to-violet {
+		background: linear-gradient(90deg, vars.$color__lightviolet 0%, vars.$color__violet 100%);
+	}
 	
 }
