@@ -3,21 +3,28 @@
 
 .nav {
   height: 5rem;
+  overflow-x: scroll;
   .list {
     height: 100%;
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    gap: .8rem;
-    justify-content: center;
+    display: flex;   
     align-items: center;
+    @include mixins.breakpoint(phone) {
+      justify-content: flex-start;
+      gap: 1rem;
+    }
+    @include mixins.breakpoint(tablet) {
+      justify-content: center;
+      gap: 1rem;
+    }
     li {
       a {
         text-decoration: none;
         color: #fff;
         font-weight: bold;
-        font-size: 1rem;
+        font-size: 1.1rem;
         cursor: pointer;
         &:hover, &:focus, &.active {
           color: vars.$color__orange;
