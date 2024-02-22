@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import styles from "./section.module.scss";
-import { Element } from "react-scroll";
+import { Element } from 'react-scroll';
 
 // Define a type for the component's props
 interface SectionProps {
@@ -9,11 +9,9 @@ interface SectionProps {
 }
 
 const Section = ({ children, id }: SectionProps) => {
-  return (
-    <section name={id || ""} className={styles.section}>
+  return <section id={id} className={styles.section}>
       {children}
-    </section>
-  );
+  </section>
 };
 
 export default Section;
