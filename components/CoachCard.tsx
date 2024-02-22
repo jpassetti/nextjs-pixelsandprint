@@ -92,9 +92,7 @@ const CoachCard: React.FC<CoachCardProps> = ({ coach }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {name.first}
-            <br />
-            {name.last}
+            {name.first} {name.last}
           </a>
         </Heading>
         {title && <Paragraph marginBottom={1}>{title}</Paragraph>}
