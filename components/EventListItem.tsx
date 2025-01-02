@@ -25,11 +25,12 @@ const EventListItem: React.FC<{ event: Event }> = ({ event }) => {
         <Col xs={12} sm={5}>
             <Paragraph strong>{title}</Paragraph>
         </Col>
-        <Col xs={12} sm={4}>
-            <Paragraph>{formattedLocation.name}<br />
+        
+            {formattedLocation && <Col xs={12} sm={4}><Paragraph>{formattedLocation.name}<br />
             {formattedLocation.room ? formattedLocation.room : ''} {formattedLocation.building}
             </Paragraph>
-        </Col>
+            
+        </Col>}
       </Row>
     }
 export default EventListItem;

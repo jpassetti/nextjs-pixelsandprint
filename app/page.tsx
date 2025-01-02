@@ -11,7 +11,7 @@ export default function Page() {
     // Check if the current path is the homepage
     if (pathname === "/") {
       // Redirect to the /2024 landing page
-      router.replace("/2024");
+      router.replace("/2025");
     }
   }, [router, pathname]);
 

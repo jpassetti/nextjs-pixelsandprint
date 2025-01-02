@@ -8,7 +8,7 @@ import Span from "./Span";
 
 import styles from "./overview.module.scss";
 
-const Overview = () => {
+const Overview = ({ year }) => {
   return (
     <section className={styles.overview} id="overview">
       <Heading
@@ -30,7 +30,7 @@ const Overview = () => {
         marginBottom={4}
         condensed
       >
-        Feb. 22-24, 2024
+        {year === "2024" ? `Feb. 22-24, 2024` : `Feb. 6-8, 2025`}
       </Heading>
       <Paragraph marginBottom={6} textAlign="center">
         Workshop is limited to students in the graphic design program at the
@@ -39,9 +39,9 @@ const Overview = () => {
 
       <ButtonGroup justifyContent="center">
         <ButtonWithLink
-          href="/register"
+          href={`${year}/register`}
           label="Register now"
-          type="primary"
+         // type="primary"
           gradient="lightorange-to-orange"
         />
       </ButtonGroup>

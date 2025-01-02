@@ -1,17 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
-
 import Image from "next/image";
-import { getSponsors } from "../lib/api";
+import { getSponsorsByYear } from "../lib/api";
 import Grid from "./Grid";
 import Heading from "./Heading";
 import Section from "./Section";
+import Paragraph from "./Paragraph"; // Assuming Paragraph is a component for styled text
 
 import styles from "./sponsors.module.scss";
 
-const Sponsors = () => {
-  const sponsors = getSponsors();
+// Define the props interface
+interface SponsorsProps {
+  year: number; // Ensure the year is explicitly typed as a number
+}
+
+const Sponsors: React.FC<SponsorsProps> = ({ year }) => {
+  const sponsors = getSponsorsByYear(year);
 
   const variants = {
     open: {
@@ -41,30 +46,36 @@ const Sponsors = () => {
       >
         Sponsors
       </Heading>
-      <Grid>
-        {sponsors.map((sponsor, index) => {
-          const { name, url, featuredImage } = sponsor;
-          return (
-            <motion.div
-              className={styles.sponsor}
-              key={index}
-              variants={variants}
-            >
-              <div>
-                <a href={url} target="_blank">
-                  <Image
-                    src={featuredImage.node.sourceUrl}
-                    alt={featuredImage.node.altText}
-                    width={featuredImage.node.mediaDetails.width}
-                    height={featuredImage.node.mediaDetails.height}
-                    className={styles.sponsorImage}
-                  />
-                </a>
-              </div>
-            </motion.div>
-          );
-        })}
-      </Grid>
+      {sponsors.length > 0 ? (
+        <Grid>
+          {sponsors.map((sponsor, index) => {
+            const { name, url, featuredImage } = sponsor;
+            return (
+              <motion.div
+                className={styles.sponsor}
+                key={index}
+                variants={variants}
+              >
+                <div>
+                  <a href={url} target="_blank" rel="noopener noreferrer">
+                    <Image
+                      src={featuredImage.node.sourceUrl}
+                      alt={featuredImage.node.altText}
+                      width={featuredImage.node.mediaDetails.width}
+                      height={featuredImage.node.mediaDetails.height}
+                      className={styles.sponsorImage}
+                    />
+                  </a>
+                </div>
+              </motion.div>
+            );
+          })}
+        </Grid>
+      ) : (
+        <Paragraph textAlign="center" color="white">
+          Sponsor information for {year} is not yet available.
+        </Paragraph>
+      )}
     </Section>
   );
 };

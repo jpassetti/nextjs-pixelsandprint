@@ -11,18 +11,24 @@ import Section from "./Section";
 import { getCoachesByYear } from "../lib/api";
 
 interface CoachesProps {
-  year: number; // Assuming year is a number, adjust the type accordingly
+  year?: number; // Make year optional
 }
 
 const Coaches: React.FC<CoachesProps> = ({ year }) => {
   const [coaches, setCoaches] = useState([]);
 
   useEffect(() => {
-    const coachesByYear = getCoachesByYear(year);
-    coachesByYear.sort((a, b) => a.name.last.localeCompare(b.name.last));
-    setCoaches(coachesByYear);
+    if (year) {
+      const coachesByYear = getCoachesByYear(year);
+      coachesByYear.sort((a, b) => a.name.last.localeCompare(b.name.last));
+      setCoaches(coachesByYear);
+    }
   }, [year]);
-  
+
+  if (!year) {
+    return null; // Don't render the component if the year is not provided
+  }
+
   return (
     <Section id="coaches">
       <Heading
@@ -35,13 +41,20 @@ const Coaches: React.FC<CoachesProps> = ({ year }) => {
         Coaches
       </Heading>
       <Container type="content">
-        <Grid>
-          {coaches?.map((coach, index) => {
-            return <CoachCard key={index} coach={coach} />
-        })}
-        </Grid>
+        {coaches.length > 0 ? (
+          <Grid>
+            {coaches.map((coach, index) => (
+              <CoachCard key={index} coach={coach} />
+            ))}
+          </Grid>
+        ) : (
+          <Paragraph textAlign="center" color="gray">
+            Coach information for {year} is not yet available.
+          </Paragraph>
+        )}
       </Container>
     </Section>
   );
 };
+
 export default Coaches;

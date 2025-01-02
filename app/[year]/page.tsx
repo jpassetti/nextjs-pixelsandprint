@@ -14,12 +14,12 @@ export default function Home({ params }) {
 
   return (
     <Fragment>
-      <Overview />
+      <Overview year={year} />
       <Container>
-        <About />
-        <Schedule />
+        <About year={year} />
+        <Schedule year={year} />
         <Coaches year={year} />
-        <Sponsors />
+        <Sponsors year={year} />
       </Container>
     </Fragment>
   );
