@@ -5,6 +5,12 @@ import StickyNav from "@/components/StickyNav";
 
 import "@/sass/global.scss";
 
+export const metadata = {
+  title: "Pixels & Print Workshop | Newhouse School at Syracuse University",
+  description:
+    "Pixels & Print is a design workshop for social impact. The workshop is limited to students in the graphic design program at the Newhouse School.",
+};
+
 export default function RootLayout({
   children,
 }: {
