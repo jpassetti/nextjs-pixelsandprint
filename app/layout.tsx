@@ -1,4 +1,5 @@
 import React from "react";
+import { Roboto_Condensed } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyNav from "@/components/StickyNav";
@@ -11,13 +12,19 @@ export const metadata = {
   "Pixels & Print is a design workshop for social impact. The workshop is limited to students in the graphic design program at the Newhouse School.",
 };
 
+const robotoCondensed = Roboto_Condensed({
+ subsets: ["latin"],
+ weight: ["400", "700"], // Specify the weights you need
+ variable: "--font-roboto-condensed", // Define a CSS variable
+});
+
 export default function RootLayout({
  children,
 }: {
  children: React.ReactNode;
 }) {
  return (
-  <html lang="en">
+  <html lang="en" className={robotoCondensed.variable}>
    <head>
     <link
      rel="apple-touch-icon"
