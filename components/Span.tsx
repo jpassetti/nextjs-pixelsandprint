@@ -3,7 +3,7 @@ import classnames from 'classnames/bind'
 
 import styles from './span.module.scss'
 
-let cx = classnames.bind(styles)
+const cx = classnames.bind(styles)
 
 type Props = {
     children?: ReactNode,
@@ -14,7 +14,7 @@ type Props = {
 }
 
 const Span = ({children, color, size, gradient, fontWeight}:Props) => {
-    let spanClasses = cx({
+    const spanClasses = cx({
         span: true,
         [`font-color-${color}`]: color,
         [`font-size-${size}`]: size,

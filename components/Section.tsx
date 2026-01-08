@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react";
 import styles from "./section.module.scss";
-import { Element } from 'react-scroll';
 
 // Define a type for the component's props
 interface SectionProps {

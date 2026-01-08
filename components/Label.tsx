@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import classNames from 'classnames/bind';
 import styles from './label.module.scss';
-let cx = classNames.bind(styles)
+const cx = classNames.bind(styles)
 
 type Props = {
     children: ReactNode, 
@@ -11,7 +11,7 @@ type Props = {
 }
 
 const Label = ({children, caps, fontColor, fontWeight}:Props) => {
-    let labelClasses = cx({
+    const labelClasses = cx({
         label: true,
         caps: caps,
         [`font-color-${fontColor}`]: fontColor,

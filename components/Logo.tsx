@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './logo.module.scss';
 import { Fragment } from 'react';
-let cx = classNames.bind(styles)
+const cx = classNames.bind(styles)
 
 type Props = {
     entity?: string,
@@ -11,7 +11,7 @@ type Props = {
 }
 
 const Logo = ({entity, width, marginBottom, variant }:Props) => {
-    let logoClasses = cx({
+    const logoClasses = cx({
 		logo: true,
         [`margin-bottom-${marginBottom}`]: marginBottom
 	});

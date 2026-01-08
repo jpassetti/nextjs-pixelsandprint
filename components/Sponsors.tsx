@@ -2,21 +2,22 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { getSponsorsByYear } from "../lib/api";
 import Grid from "./Grid";
 import Heading from "./Heading";
 import Section from "./Section";
 import Paragraph from "./Paragraph"; // Assuming Paragraph is a component for styled text
 
+import type { Sponsor } from "@/lib/sanity.types";
+
 import styles from "./sponsors.module.scss";
 
 // Define the props interface
 interface SponsorsProps {
- year: number; // Ensure the year is explicitly typed as a number
+ year: number;
+ sponsors?: Sponsor[];
 }
 
-const Sponsors: React.FC<SponsorsProps> = ({ year }) => {
- const sponsors = getSponsorsByYear(year);
+const Sponsors: React.FC<SponsorsProps> = ({ year, sponsors = [] }) => {
 
  const variants = {
   open: {
@@ -46,22 +47,31 @@ const Sponsors: React.FC<SponsorsProps> = ({ year }) => {
    >
     Sponsors
    </Heading>
-   {sponsors.length > 0 ? (
+    {sponsors.length > 0 ? (
     <Grid maxColumns={4}>
-     {sponsors.map((sponsor, index) => {
-      const { name, url, featuredImage } = sponsor;
+     {sponsors.map((sponsor) => {
+        const { name, url, logo } = sponsor;
+        const logoUrl = logo?.asset?.url;
+        const width = logo?.asset?.metadata?.dimensions?.width;
+        const height = logo?.asset?.metadata?.dimensions?.height;
       return (
-       <motion.div className={styles.sponsor} key={index} variants={variants}>
+       <motion.div className={styles.sponsor} key={sponsor._id} variants={variants}>
         <div>
-         <a href={url} target="_blank" rel="noopener noreferrer">
-          <Image
-           src={featuredImage.node.sourceUrl}
-           alt={featuredImage.node.altText}
-           width={featuredImage.node.mediaDetails.width}
-           height={featuredImage.node.mediaDetails.height}
-           className={styles.sponsorImage}
-          />
-         </a>
+            {logoUrl ? (
+             <a href={url || "#"} target={url ? "_blank" : undefined} rel={url ? "noopener noreferrer" : undefined}>
+              <Image
+                src={logoUrl}
+                alt={logo?.alt || name}
+                width={width || 300}
+                height={height || 150}
+                className={styles.sponsorImage}
+              />
+             </a>
+            ) : (
+             <Paragraph textAlign="center" color="white">
+              {name}
+             </Paragraph>
+            )}
         </div>
        </motion.div>
       );

@@ -13,7 +13,6 @@ type ItemProps = {
   label?: string;
   slug?: string;
   activeSection?: string;
-  setActiveSection?: Function;
 };
 
 const Accordion = () => {
@@ -21,13 +20,13 @@ const Accordion = () => {
   return (
     <div className={styles.accordion}>
       {items.map((item, index) => {
-        const { label, slug, path } = item;
+        const { label, slug } = item;
         return <Item key={index} label={label} slug={slug} />;
       })}
     </div>
   );
 };
-const Item = ({ label, slug, activeSection, setActiveSection }: ItemProps) => {
+const Item = ({ label, slug, activeSection }: ItemProps) => {
   const [isExpanded, setIsExpanded] = useState(
     activeSection === slug ? true : false
   );

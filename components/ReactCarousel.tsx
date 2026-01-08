@@ -1,5 +1,3 @@
-// @ts-ignore
-
 // packages
 import { useContext } from "react";
 import {
@@ -8,18 +6,8 @@ import {
   Slide,
   ButtonBack,
   ButtonNext,
-  DotGroup,
-  Dot,
 } from "pure-react-carousel";
 import classNames from "classnames/bind";
-
-import Link from "next/link";
-import Image from "next/image";
-
-// custom components
-import Button from "./Button";
-import Heading from "./Heading";
-import Paragraph from "./Paragraph";
 
 // context
 import { ResponsiveContext } from "../lib/context";
@@ -29,30 +17,25 @@ import carouselStyles from "./purereactcarousel.module.scss";
 import Icon from "./Icon";
 import CoachCard from "./CoachCard";
 
-let cx = classNames.bind(carouselStyles);
+const cx = classNames.bind(carouselStyles);
 
 const ReactCarousel = ({ children, totalSlides, colorMode = "light" }) => {
   const [currentDevice] = useContext(ResponsiveContext);
 
-  let sliderClasses = cx({
+  const sliderClasses = cx({
     [`carousel__slider`]: true,
     dark: colorMode === "dark",
     light: colorMode === "light",
   });
-  let buttonBackClasses = cx({
+  const buttonBackClasses = cx({
     [`carousel__button`]: true,
     back: true,
     dark: colorMode === "dark",
     light: colorMode === "light",
   });
-  let buttonNextClasses = cx({
+  const buttonNextClasses = cx({
     [`carousel__button`]: true,
     next: true,
-    dark: colorMode === "dark",
-    light: colorMode === "light",
-  });
-  let dotGroupClasses = cx({
-    [`carousel__dotGroup`]: true,
     dark: colorMode === "dark",
     light: colorMode === "light",
   });
@@ -98,17 +81,9 @@ const ReactCarousel = ({ children, totalSlides, colorMode = "light" }) => {
 };
 const Item = ({
   index,
-  title,
-  category = false,
-  slug = false,
-  excerpt = false,
-  featuredImage = false,
-  ctaPath = false,
-  ctaLabel = false,
-  ctaInline = false,
   colorMode,
 }) => {
-  let slideClasses = cx({
+  const slideClasses = cx({
     [`carousel__slide`]: true,
     dark: colorMode === "dark",
     light: colorMode === "light",

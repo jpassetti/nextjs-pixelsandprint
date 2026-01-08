@@ -2,7 +2,7 @@ import React, { Fragment, ReactNode } from 'react'
 import classNames from 'classnames/bind'
 import styles from './heading.module.scss';
 
-let cx = classNames.bind(styles);
+const cx = classNames.bind(styles);
 
 type Props = {
     children?: ReactNode,
@@ -43,7 +43,7 @@ const Heading = ({
 	textTransform,
 	size,
   }: Props) => {
-	let headingClasses = cx({
+	const headingClasses = cx({
 		heading: true,
 		[`h${level}`]: level,
 		[`text-align-${textAlign}`] : textAlign,

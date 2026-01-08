@@ -2,7 +2,7 @@ import classnames from 'classnames/bind'
 
 import styles from './button.module.scss'
 
-let cx = classnames.bind(styles);
+const cx = classnames.bind(styles);
 
 interface ButtonProps {
     label: string;
@@ -19,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({
     gradient, 
     clickHandler 
 }) => {
-    let buttonClasses = cx({
+    const buttonClasses = cx({
         button: true,
         inverse: inverse,
         [`primary`] : type === "primary",

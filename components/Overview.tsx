@@ -3,12 +3,20 @@ import ButtonGroup from "./ButtonGroup";
 import Dashes from "./Dashes";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
-import Section from "./Section";
 import Span from "./Span";
 
 import styles from "./overview.module.scss";
 
-const Overview = ({ year }) => {
+const Overview = ({
+  year,
+  datesLabel,
+  registrationPath,
+  kicker,
+  highlight,
+  body,
+  ctaLabel,
+  ctaEnabled = true,
+}) => {
   return (
     <section className={styles.overview} id="overview">
       <Heading
@@ -17,9 +25,9 @@ const Overview = ({ year }) => {
         textTransform="uppercase"
         textAlign="center"
       >
-        <Span size="small">A design workshop for</Span>
+        <Span size="small">{kicker || "A design workshop for"}</Span>
         <br />
-        <Span gradient="orange">social impact.</Span>
+        <Span gradient="orange">{highlight || "social impact."}</Span>
       </Heading>
       <Dashes />
       <Heading
@@ -30,21 +38,23 @@ const Overview = ({ year }) => {
         marginBottom={4}
         condensed
       >
-        {year === "2024" ? `Feb. 22-24, 2024` : `Feb. 6-8, 2025`}
+        {datesLabel || "Dates to be announced"}
       </Heading>
       <Paragraph marginBottom={6} textAlign="center">
-        Workshop is limited to students in the graphic design program at the
-        Newhouse School.
+        {body ||
+          "Workshop is limited to students in the graphic design program at the Newhouse School."}
       </Paragraph>
 
-      <ButtonGroup justifyContent="center">
-        <ButtonWithLink
-          href={`${year}/register`}
-          label="Register now"
-         // type="primary"
-          gradient="lightorange-to-orange"
-        />
-      </ButtonGroup>
+      {ctaEnabled !== false && (
+        <ButtonGroup justifyContent="center">
+          <ButtonWithLink
+            href={registrationPath || `/${year}/register`}
+            label={ctaLabel || "Register now"}
+            // type="primary"
+            gradient="lightorange-to-orange"
+          />
+        </ButtonGroup>
+      )}
     </section>
   );
 };

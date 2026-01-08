@@ -4,7 +4,7 @@ import classnames from 'classnames/bind'
 
 import styles from './paragraph.module.scss'
 
-let cx = classnames.bind(styles)
+const cx = classnames.bind(styles)
 
 type Props = {
     children?: ReactNode,

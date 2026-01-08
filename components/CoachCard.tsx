@@ -5,7 +5,7 @@ import Paragraph from "./Paragraph";
 import classnames from "classnames/bind";
 import styles from "./coachcard.module.scss";
 
-let cx = classnames.bind(styles);
+const cx = classnames.bind(styles);
 
 // Define the types for the coach's properties
 interface Coach {
@@ -40,7 +40,7 @@ interface CoachCardProps {
 
 const CoachCard: React.FC<CoachCardProps> = ({ coach }) => {
   const { name, title, company, featuredImage, role } = coach;
-  let roleClasses = cx({
+  const roleClasses = cx({
     coachcard__role: true,
     [`gradient-lightorange-to-orange`]: role.slug === "uiux",
     [`gradient-mediumorange-to-darkorange`]: role.slug === "motion",

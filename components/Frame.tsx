@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import classnames from "classnames/bind";
 import styles from "./frame.module.scss";
 
-let cx = classnames.bind(styles);
+const cx = classnames.bind(styles);
 
 // Define a type for the component's props
 interface FrameProps {
@@ -11,7 +11,7 @@ interface FrameProps {
 }
 
 const Frame: React.FC<FrameProps> = ({ children, color }) => {
-  let frameClasses = cx({
+  const frameClasses = cx({
     frame: true,
     white: color === "white",
     // Add more color conditions here if needed

@@ -2,7 +2,7 @@ import classnames from "classnames/bind";
 import Icon from "./Icon";
 import styles from "./expandbutton.module.scss";
 
-let cx = classnames.bind(styles);
+const cx = classnames.bind(styles);
 
 // Define the types for the component's props
 interface ExpandButtonProps {
@@ -14,7 +14,7 @@ const ExpandButton: React.FC<ExpandButtonProps> = ({
   clickHandler,
   isActive,
 }) => {
-  let expandButtonClasses = cx({
+  const expandButtonClasses = cx({
     expandbutton: true,
     active: isActive,
   });

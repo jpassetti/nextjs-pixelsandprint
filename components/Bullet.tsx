@@ -2,7 +2,7 @@ import classnames from 'classnames/bind'
 
 import styles from './bullet.module.scss'
 
-let cx = classnames.bind(styles)
+const cx = classnames.bind(styles)
 
 type Props = {
     width: number, 
@@ -13,17 +13,19 @@ type Props = {
 
 
 const Bullet = ({width, active, isFocused, isHovered}:Props) => {
-    let orangeClasses = cx({
+    const orangeClasses = cx({
         orange: true,
         active: active,
         isFocused: isFocused,
         isHovered: isHovered
     });
-    let whiteClasses = cx({
+    const whiteClasses = cx({
         white: true,
         active: active
     });
     return <svg 
+        width={width}
+        height={width}
         x="0px" 
         y="0px"
         viewBox="0 0 100 100" 

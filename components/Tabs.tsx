@@ -1,8 +1,7 @@
-import { Fragment } from "react";
 import classnames from "classnames/bind";
 import styles from "./tabs.module.scss";
 
-let cx = classnames.bind(styles);
+const cx = classnames.bind(styles);
 
 const Tabs = ({ items, setActiveTab, activeTab }) => {
   return (
@@ -18,7 +17,6 @@ const Tabs = ({ items, setActiveTab, activeTab }) => {
         return (
           <Tab
             key={index}
-            slug={item.slug}
             activeTab={activeTab}
             setActiveTab={setActiveTab}
             tabIndex={index}
@@ -31,8 +29,8 @@ const Tabs = ({ items, setActiveTab, activeTab }) => {
   );
 };
 
-const Tab = ({ children, activeTab, setActiveTab, slug, tabIndex }) => {
-  let tabClasses = cx({
+const Tab = ({ children, activeTab, setActiveTab, tabIndex }) => {
+  const tabClasses = cx({
     tab: true,
     active: tabIndex === activeTab,
   });

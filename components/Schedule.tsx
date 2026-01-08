@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import Container from "./Container";
 import EventListItem from "./EventListItem";
 import Section from "./Section";
-import { getDaysByYear, getEventsByDay } from "../lib/api";
 import Filters from "./Filters";
 import Heading from "./Heading";
+
+import type { ScheduleDay, ScheduleEvent } from "@/lib/sanity.types";
 
 interface Event {
   title: string;
@@ -14,41 +15,58 @@ interface Event {
     start: string;
     end: string;
   };
-  location: string;
+  location:
+    | {
+        name?: string;
+        slug?: string;
+        building?: string | null;
+        room?: string | null;
+      }
+    | string;
   slug: string;
-}
-
-interface Day {
-  name: string;
-  slug: string;
-  time: {
-    start: string;
-    end: string;
-  };
 }
 
 // Define props for the Schedule component
 interface ScheduleProps {
-  year: number;
+  days?: ScheduleDay[];
+  events?: ScheduleEvent[];
 }
 
-const Schedule: React.FC<ScheduleProps> = ({ year }) => {
+const Schedule: React.FC<ScheduleProps> = ({ days = [], events = [] }) => {
   const [selectedDayIndex, setSelectedDayIndex] = useState<number>(0);
-  const [events, setEvents] = useState<Event[]>([]);
 
-  // Memoize `days` to avoid recalculating it on every render
-  const days = useMemo(() => getDaysByYear(year) as Day[], [year]);
+  const sortedDays = useMemo(() => {
+    return [...days].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+  }, [days]);
 
-  useEffect(() => {
-    const selectedDay = days[selectedDayIndex];
-    if (selectedDay) {
-      const fetchedEvents = getEventsByDay(
-        selectedDay.time.start,
-        selectedDay.time.end
-      );
-      setEvents(fetchedEvents);
+  const eventsByDaySlug = useMemo(() => {
+    const map = new Map<string, ScheduleEvent[]>();
+    for (const event of events) {
+      const key = event.daySlug;
+      map.set(key, [...(map.get(key) || []), event]);
     }
-  }, [selectedDayIndex, days]);
+    map.forEach((list, key) => {
+      list.sort((a, b) => a.start.localeCompare(b.start));
+      map.set(key, list);
+    });
+    return map;
+  }, [events]);
+
+  const visibleEvents = useMemo<Event[]>(() => {
+    const selectedDay = sortedDays[selectedDayIndex];
+    if (!selectedDay) return [];
+
+    const dayEvents = eventsByDaySlug.get(selectedDay.slug) || [];
+    return dayEvents.map((event) => ({
+      title: event.title,
+      slug: event.slug,
+      location: event.location ?? event.locationSlug ?? "tba",
+      time: {
+        start: event.start,
+        end: event.end || "",
+      },
+    }));
+  }, [eventsByDaySlug, selectedDayIndex, sortedDays]);
 
   return (
     <Section id="schedule">
@@ -64,14 +82,18 @@ const Schedule: React.FC<ScheduleProps> = ({ year }) => {
 
       <Container type="content">
         <Filters
-          items={days}
+          items={sortedDays.map((d) => ({
+            name: d.title,
+            slug: d.slug,
+            time: { start: d.start, end: d.end },
+          }))}
           format="tabs"
           activeTabIndex={selectedDayIndex}
           setActiveTabIndex={setSelectedDayIndex}
           filterBy="day"
         />
         <div>
-          {events.map((event, index) => (
+          {visibleEvents.map((event, index) => (
             <EventListItem key={index} event={event} />
           ))}
         </div>

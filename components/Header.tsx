@@ -14,7 +14,7 @@ const Header = () => {
         />
       </a>
       <br />
-      <Link href="/2024">
+      <Link href="/">
         <Logo entity="pixels-and-print" width={300} />
       </Link>
     </header>

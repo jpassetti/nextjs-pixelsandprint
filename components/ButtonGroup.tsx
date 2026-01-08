@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import classnames from "classnames/bind";
 import styles from "./buttongroup.module.scss";
 
-let cx = classnames.bind(styles);
+const cx = classnames.bind(styles);
 
 // Define a type for the component's props
 interface ButtonGroupProps {
@@ -19,7 +19,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
   children,
   justifyContent,
 }) => {
-  let buttonGroupClasses = cx({
+  const buttonGroupClasses = cx({
     button_group: true,
     [`justify-content-${justifyContent}`]: justifyContent,
   });

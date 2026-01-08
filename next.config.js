@@ -1,15 +1,11 @@
 module.exports = {
- async redirects() {
-  return [
-   {
-    source: "/",
-    destination: "/2025",
-    permanent: true, // 301 redirect
-   },
-  ];
- },
  images: {
   remotePatterns: [
+    {
+     protocol: "https",
+     hostname: "cdn.sanity.io",
+     pathname: "/**",
+    },
    {
     protocol: "https",
     hostname: "via.placeholder.com",

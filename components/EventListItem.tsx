@@ -1,7 +1,7 @@
 import Col from './Col';
 import Paragraph from './Paragraph';
 import Row from './Row';
-import { getFormattedTime, getRoomBySlug } from '../lib/api';
+import { formatTimeRange, getRoomBySlug } from '../lib/schedule';
 
 interface Event {
     title: string;
@@ -9,14 +9,29 @@ interface Event {
       start: string;
       end: string;
     };
-    location: string;
+    location:
+      | {
+          name?: string;
+          slug?: string;
+          building?: string | null;
+          room?: string | null;
+        }
+      | string;
     slug: string;
   }
 
 const EventListItem: React.FC<{ event: Event }> = ({ event }) => {
-    const { title, time, location, slug } = event;
-    const formattedTime = getFormattedTime(time.start, time.end);
-    const formattedLocation = getRoomBySlug(location);
+    const { title, time, location } = event;
+  const formattedTime = formatTimeRange(time.start, time.end);
+    const formattedLocation =
+      typeof location === "string"
+        ? getRoomBySlug(location)
+        : location?.slug
+          ? getRoomBySlug(location.slug)
+          : undefined;
+
+    const displayLocation =
+      typeof location === "string" ? formattedLocation : (location ?? formattedLocation);
 
     return <Row paddingTop={2} paddingBottom={2} borderBottom={1}>
         <Col xs={12} sm={3}>
@@ -26,8 +41,8 @@ const EventListItem: React.FC<{ event: Event }> = ({ event }) => {
             <Paragraph strong>{title}</Paragraph>
         </Col>
         
-            {formattedLocation && <Col xs={12} sm={4}><Paragraph>{formattedLocation.name}<br />
-            {formattedLocation.room ? formattedLocation.room : ''} {formattedLocation.building}
+            {displayLocation && <Col xs={12} sm={4}><Paragraph>{displayLocation.name}<br />
+            {displayLocation.room ? displayLocation.room : ''} {displayLocation.building}
             </Paragraph>
             
         </Col>}
