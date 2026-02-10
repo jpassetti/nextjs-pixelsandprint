@@ -33,7 +33,7 @@ const Coaches: React.FC<CoachesProps> = ({ year, coaches = [] }) => {
    >
     Coaches
    </Heading>
-   <Container type="content">
+   <Container>
         {sortedCoaches.length > 0 ? (
      <Grid maxColumns={3}>
             {sortedCoaches.map((coach) => (

@@ -21,6 +21,7 @@ const About: React.FC<AboutProps> = ({ year, workshopDatesLabel, videoUrl, about
 
   return (
     <Section id="about">
+      <Container>
       <Iframe
         aspectRatio="16x9"
         width={640}
@@ -29,12 +30,13 @@ const About: React.FC<AboutProps> = ({ year, workshopDatesLabel, videoUrl, about
         title="Vimeo video player"
         platform="vimeo"
       />
+      </Container>
       <Container type="content">
         {Array.isArray(aboutBody) && aboutBody.length > 0 ? (
           <PortableTextContent value={aboutBody} />
         ) : (
           <>
-            <Paragraph marginBottom={2} color="white">
+            <Paragraph marginBottom={2} marginTop={6} color="white">
               Pixels & Print is a design workshop for the students in the graphic
               design program at{" "}
               <a href="https://www.syracuse.edu" target="_blank" rel="noopener noreferrer">
