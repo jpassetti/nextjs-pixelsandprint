@@ -471,6 +471,7 @@ export const workshopYear = defineType({
     {
      type: "object",
      name: "scheduleEvent",
+       fieldsets: [{ name: "legacy", title: "Legacy" }],
      fields: [
       defineField({ name: "title", title: "Title", type: "string", validation: (r) => r.required() }),
       defineField({ name: "slug", title: "Slug", type: "string", validation: (r) => r.required() }),
