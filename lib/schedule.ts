@@ -36,13 +36,30 @@ function formatMinutes(minutes: number) {
  return minutes < 10 ? `0${minutes}` : `${minutes}`;
 }
 
+const EASTERN_TZ = "America/New_York";
+
+function getEasternTimeParts(iso: string) {
+ const date = new Date(iso);
+ const parts = new Intl.DateTimeFormat("en-US", {
+  timeZone: EASTERN_TZ,
+  hour: "numeric",
+  minute: "2-digit",
+  hour12: true,
+ }).formatToParts(date);
+
+ const hour = Number(parts.find((p) => p.type === "hour")?.value ?? "0");
+ const minute = Number(parts.find((p) => p.type === "minute")?.value ?? "0");
+ const dayPeriod = (parts.find((p) => p.type === "dayPeriod")?.value ?? "").toLowerCase();
+ const amPm = dayPeriod === "am" ? "a.m." : dayPeriod === "pm" ? "p.m." : "";
+
+ return { hour, minute, amPm };
+}
+
 export function formatTimeRange(start: string, end?: string | null) {
- const startDateTime = new Date(start);
- const startHour = startDateTime.getHours();
- const startMinute = startDateTime.getMinutes();
- const startHourFormatted = startHour > 12 ? startHour - 12 : startHour;
- const startMinuteFormatted = formatMinutes(startMinute);
- const startAmPm = startHour >= 12 ? "p.m." : "a.m.";
+ const startParts = getEasternTimeParts(start);
+ const startHourFormatted = startParts.hour;
+ const startMinuteFormatted = formatMinutes(startParts.minute);
+ const startAmPm = startParts.amPm;
 
  let endDateTime: Date | undefined;
  let endHour: number | undefined;
@@ -52,12 +69,13 @@ export function formatTimeRange(start: string, end?: string | null) {
  let endAmPm: string | undefined;
 
  if (end) {
-  endDateTime = new Date(end);
-  endHour = endDateTime.getHours();
-  endMinute = endDateTime.getMinutes();
-  endHourFormatted = endHour > 12 ? endHour - 12 : endHour;
-  endMinuteFormatted = formatMinutes(endMinute);
-  endAmPm = endHour >= 12 ? "p.m." : "a.m.";
+    const endParts = getEasternTimeParts(end);
+    endDateTime = new Date(end);
+    endHour = endParts.hour;
+    endMinute = endParts.minute;
+    endHourFormatted = endHour;
+    endMinuteFormatted = formatMinutes(endMinute);
+    endAmPm = endParts.amPm;
  }
 
  if (end && startAmPm === endAmPm) {

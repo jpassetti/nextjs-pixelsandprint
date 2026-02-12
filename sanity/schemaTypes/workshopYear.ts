@@ -1,4 +1,5 @@
 import { defineField, defineType, type SanityDocument } from "sanity";
+import EasternDateTimeInput from "../components/EasternDateTimeInput";
 
 export const workshopYear = defineType({
  name: "workshopYear",
@@ -452,8 +453,20 @@ export const workshopYear = defineType({
      fields: [
       defineField({ name: "title", title: "Title", type: "string", validation: (r) => r.required() }),
       defineField({ name: "slug", title: "Slug", type: "string", validation: (r) => r.required() }),
-      defineField({ name: "start", title: "Start", type: "datetime", validation: (r) => r.required() }),
-      defineField({ name: "end", title: "End", type: "datetime", validation: (r) => r.required() }),
+        defineField({
+         name: "start",
+         title: "Start",
+         type: "datetime",
+         components: { input: EasternDateTimeInput },
+         validation: (r) => r.required(),
+        }),
+        defineField({
+         name: "end",
+         title: "End",
+         type: "datetime",
+         components: { input: EasternDateTimeInput },
+         validation: (r) => r.required(),
+        }),
       defineField({ name: "order", title: "Order", type: "number" }),
      ],
      preview: {
@@ -475,8 +488,19 @@ export const workshopYear = defineType({
      fields: [
       defineField({ name: "title", title: "Title", type: "string", validation: (r) => r.required() }),
       defineField({ name: "slug", title: "Slug", type: "string", validation: (r) => r.required() }),
-      defineField({ name: "start", title: "Start", type: "datetime", validation: (r) => r.required() }),
-      defineField({ name: "end", title: "End", type: "datetime" }),
+        defineField({
+         name: "start",
+         title: "Start",
+         type: "datetime",
+         components: { input: EasternDateTimeInput },
+         validation: (r) => r.required(),
+        }),
+        defineField({
+         name: "end",
+         title: "End",
+         type: "datetime",
+         components: { input: EasternDateTimeInput },
+        }),
       defineField({
        name: "daySlug",
        title: "Day Slug",

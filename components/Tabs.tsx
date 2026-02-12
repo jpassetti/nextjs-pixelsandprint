@@ -9,10 +9,14 @@ const Tabs = ({ items, setActiveTab, activeTab }) => {
       {items.map((item, index) => {
         const { name, time } = item;
 
-        // Extract the date information from the time.start
-        const date = new Date(time.start);
-        const month = date.getMonth() + 1; // Months are 0-indexed
-        const day = date.getDate();
+        // Extract the date information from the time.start (always Eastern Time)
+        const dateParts = new Intl.DateTimeFormat("en-US", {
+          timeZone: "America/New_York",
+          month: "numeric",
+          day: "numeric",
+        }).formatToParts(new Date(time.start));
+        const month = dateParts.find((p) => p.type === "month")?.value;
+        const day = dateParts.find((p) => p.type === "day")?.value;
 
         return (
           <Tab

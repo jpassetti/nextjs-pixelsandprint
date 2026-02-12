@@ -18,7 +18,9 @@ export default async function WorkPage({
  const yearNumber = Number.parseInt(yearSlug, 10);
  if (!Number.isFinite(yearNumber)) notFound();
 
- const items = await sanityFetch<WorkItem[]>(workTimelineQuery, { year: yearSlug });
+ const items = await sanityFetch<WorkItem[]>(workTimelineQuery, {
+  year: yearSlug,
+ });
 
  return (
   <Section id="work">
@@ -34,7 +36,13 @@ export default async function WorkPage({
     ) : (
      <div>
       {items.map((item) => (
-       <div key={item._id} style={{ padding: "16px 0", borderBottom: "1px solid rgba(255,255,255,0.15)" }}>
+       <div
+        key={item._id}
+        style={{
+         padding: "16px 0",
+         borderBottom: "1px solid rgba(255,255,255,0.15)",
+        }}
+       >
         <Heading level={3} color="white" marginBottom={1}>
          {item.title}
         </Heading>
@@ -44,7 +52,9 @@ export default async function WorkPage({
           {item.teamName && (item.category || item.timelineDate) ? " • " : ""}
           {item.category ? `Category: ${item.category}` : ""}
           {item.category && item.timelineDate ? " • " : ""}
-          {item.timelineDate ? new Date(item.timelineDate).toLocaleString() : ""}
+          {item.timelineDate
+           ? new Date(item.timelineDate).toLocaleString()
+           : ""}
          </Paragraph>
         )}
         {item.description && <Paragraph color="white">{item.description}</Paragraph>}

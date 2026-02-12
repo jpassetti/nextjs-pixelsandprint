@@ -46,7 +46,19 @@ const Schedule: React.FC<ScheduleProps> = ({ days = [], events = [] }) => {
       map.set(key, [...(map.get(key) || []), event]);
     }
     map.forEach((list, key) => {
-      list.sort((a, b) => a.start.localeCompare(b.start));
+      list.sort((a, b) => {
+        const aTime = new Date(a.start).getTime();
+        const bTime = new Date(b.start).getTime();
+
+        const aValid = Number.isFinite(aTime);
+        const bValid = Number.isFinite(bTime);
+
+        if (aValid && bValid && aTime !== bTime) return aTime - bTime;
+        if (aValid && !bValid) return -1;
+        if (!aValid && bValid) return 1;
+
+        return (a.title || "").localeCompare(b.title || "");
+      });
       map.set(key, list);
     });
     return map;

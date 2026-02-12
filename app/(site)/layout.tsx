@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyNav from "@/components/StickyNav";
 
-import "../sass/global.scss";
+import "@/sass/global.scss";
 
 export const metadata = {
  title: "Pixels & Print Workshop | Newhouse School at Syracuse University",
@@ -14,11 +14,11 @@ export const metadata = {
 
 const robotoCondensed = Roboto_Condensed({
  subsets: ["latin"],
- weight: ["400", "700"], // Specify the weights you need
- variable: "--font-roboto-condensed", // Define a CSS variable
+ weight: ["400", "700"],
+ variable: "--font-roboto-condensed",
 });
 
-export default function RootLayout({
+export default function SiteRootLayout({
  children,
 }: {
  children: React.ReactNode;
