@@ -1,6 +1,7 @@
 export const yearPageQuery = /* groq */ `
 *[_type == "workshopYear" && slug.current == $year][0]{
   _id,
+  _updatedAt,
   year,
   "slug": slug.current,
   workshopDatesLabel,

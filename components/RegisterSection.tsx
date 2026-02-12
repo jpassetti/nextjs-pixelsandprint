@@ -4,6 +4,7 @@ import Container from "./Container";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
 import Section from "./Section";
+import Reveal from "./Reveal";
 
 type RegisterSectionProps = {
   title?: string;
@@ -19,36 +20,40 @@ export default function RegisterSection({
   if (!formUrl) {
     return (
       <Section id="register">
-        <Container type="content">
-          <Heading level={2} textAlign="center" marginTop={8} marginBottom={2} color="white">
-            {title}
-          </Heading>
-          <Paragraph textAlign="center" color="white">
-            Registration is not available yet.
-          </Paragraph>
-        </Container>
+        <Reveal>
+          <Container type="content">
+            <Heading level={2} textAlign="center" marginTop={8} marginBottom={2} color="white">
+              {title}
+            </Heading>
+            <Paragraph textAlign="center" color="white">
+              Registration is not available yet.
+            </Paragraph>
+          </Container>
+        </Reveal>
       </Section>
     );
   }
 
   return (
     <Section id="register">
-      <Heading level={2} textAlign="center" marginTop={8} marginBottom={2} color="white">
-        {title}
-      </Heading>
+      <Reveal>
+        <Heading level={2} textAlign="center" marginTop={8} marginBottom={2} color="white">
+          {title}
+        </Heading>
 
-      <Container type="content">
-        <iframe
-          src={formUrl}
-          width="100%"
-          height={height}
-          style={{ border: 0 }}
-          loading="lazy"
-          title="Registration form"
-        >
-          Loading…
-        </iframe>
-      </Container>
+        <Container type="content">
+          <iframe
+            src={formUrl}
+            width="100%"
+            height={height}
+            style={{ border: 0 }}
+            loading="lazy"
+            title="Registration form"
+          >
+            Loading…
+          </iframe>
+        </Container>
+      </Reveal>
     </Section>
   );
 }

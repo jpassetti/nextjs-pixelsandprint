@@ -4,6 +4,7 @@ import Dashes from "./Dashes";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
 import Span from "./Span";
+import Reveal from "./Reveal";
 
 import styles from "./overview.module.scss";
 
@@ -19,6 +20,7 @@ const Overview = ({
 }) => {
   return (
     <section className={styles.overview} id="overview">
+      <Reveal>
       <Heading
         level={1}
         color="white"
@@ -55,6 +57,7 @@ const Overview = ({
           />
         </ButtonGroup>
       )}
+      </Reveal>
     </section>
   );
 };

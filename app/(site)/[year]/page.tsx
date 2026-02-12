@@ -11,12 +11,137 @@ import Heading from "@/components/Heading";
 import Paragraph from "@/components/Paragraph";
 import Section from "@/components/Section";
 import Container from "@/components/Container";
+import BackToTopLink from "@/components/BackToTopLink";
 import Link from "next/link";
+
+import styles from "./page.module.scss";
 
 import { sanityFetch } from "@/lib/sanity.client";
 import { yearPageQuery } from "@/lib/sanity.queries";
 import type { WorkshopYearPage } from "@/lib/sanity.types";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { absoluteUrl, getSiteUrl } from "@/lib/seo";
+
+function buildYearTitle(yearSlug: string) {
+ return `Pixels & Print ${yearSlug} | Newhouse School at Syracuse University`;
+}
+
+function buildYearDescription(data: WorkshopYearPage, yearSlug: string) {
+ return (
+  data.welcomeBody ||
+  data.workshopDatesLabel ||
+  data.overviewDatesLabel ||
+  `Pixels & Print ${yearSlug} is a design workshop for social impact at the S.I. Newhouse School of Public Communications.`
+ );
+}
+
+function buildWorkshopJsonLd(data: WorkshopYearPage, yearSlug: string) {
+ const sortedDays = [...(data.scheduleDays || [])].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+
+ const events = (data.scheduleEvents || [])
+  .filter((e) => Boolean(e?.title) && Boolean(e?.start))
+  .map((e) => {
+   const locationName =
+    (typeof e.location === "object" && e.location?.name) ||
+    (typeof e.location === "object" && e.location?.slug) ||
+    e.locationSlug ||
+    undefined;
+
+   return {
+    "@type": "Event",
+    name: e.title,
+    startDate: e.start,
+    ...(e.end ? { endDate: e.end } : {}),
+    ...(locationName
+     ? {
+        location: {
+         "@type": "Place",
+         name: locationName,
+        },
+       }
+     : {}),
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    url: absoluteUrl(`/${yearSlug}`),
+   };
+  });
+
+ return {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: `Pixels & Print ${yearSlug}`,
+  url: absoluteUrl(`/${yearSlug}`),
+  description: buildYearDescription(data, yearSlug),
+  ...(sortedDays?.[0]?.start ? { startDate: sortedDays[0].start } : {}),
+  ...(sortedDays?.[sortedDays.length - 1]?.end
+   ? { endDate: sortedDays[sortedDays.length - 1].end }
+   : {}),
+  organizer: {
+   "@type": "Organization",
+   name: "S.I. Newhouse School of Public Communications",
+   url: "https://newhouse.syracuse.edu",
+  },
+  ...(events.length
+   ? {
+      subEvent: events,
+     }
+   : {}),
+ };
+}
+
+export async function generateMetadata({
+ params,
+}: {
+ params: { year: string } | Promise<{ year: string }>;
+}): Promise<Metadata> {
+ const resolvedParams = await Promise.resolve(params);
+ const yearSlug = resolvedParams.year;
+
+ const data = await sanityFetch<WorkshopYearPage>(yearPageQuery, {
+  year: yearSlug,
+ });
+
+ if (!data?._id) {
+  return {
+   title: "Pixels & Print",
+   robots: { index: false, follow: false },
+  };
+ }
+
+ const title = buildYearTitle(yearSlug);
+ const description = buildYearDescription(data, yearSlug);
+ const canonical = absoluteUrl(`/${yearSlug}`);
+ const siteUrl = getSiteUrl();
+
+ return {
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  alternates: { canonical },
+  openGraph: {
+   type: "website",
+   url: canonical,
+   title,
+   description,
+   siteName: "Pixels & Print",
+    images: [
+     {
+      url: "/pixels-and-print-og-1200x630px.jpg",
+      width: 1200,
+      height: 630,
+      alt: "Pixels & Print",
+     },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+   title,
+   description,
+    images: ["/pixels-and-print-og-1200x630px.jpg"],
+  },
+ };
+}
 
 export default async function Home({
  params,
@@ -33,6 +158,8 @@ export default async function Home({
  });
  if (!data?._id) notFound();
 
+ const jsonLd = buildWorkshopJsonLd(data, yearSlug);
+
  const pageSections =
   data.pageSections && data.pageSections.length > 0
    ? data.pageSections
@@ -46,6 +173,11 @@ export default async function Home({
 
  return (
   <Fragment>
+   <script
+    type="application/ld+json"
+    // eslint-disable-next-line react/no-danger
+    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+   />
    {pageSections.map((section) => {
     const enabled = (section as { enabled?: boolean }).enabled !== false;
     if (!enabled) return null;
@@ -83,6 +215,7 @@ export default async function Home({
         key={section._key || section._type}
         days={data.scheduleDays || []}
         events={data.scheduleEvents || []}
+      updatedAt={data._updatedAt}
        />
       );
 
@@ -155,6 +288,14 @@ export default async function Home({
       return null;
     }
    })}
+
+   <Section id="back-to-top">
+    <Container type="content">
+     <Paragraph textAlign="center" color="white">
+    <BackToTopLink className={styles.backToTopLink} />
+     </Paragraph>
+    </Container>
+   </Section>
   </Fragment>
  );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useReducedMotion } from "framer-motion";
 import Heading from "./Heading";
 import CoachCard from "./CoachCard";
 import Container from "./Container";
@@ -16,6 +17,7 @@ interface CoachesProps {
 }
 
 const Coaches: React.FC<CoachesProps> = ({ year, coaches = [] }) => {
+ const reducedMotion = useReducedMotion();
  const sortedCoaches = [...coaches].sort((a, b) => a.nameLast.localeCompare(b.nameLast));
 
  if (!year) {
@@ -35,7 +37,21 @@ const Coaches: React.FC<CoachesProps> = ({ year, coaches = [] }) => {
    </Heading>
    <Container>
         {sortedCoaches.length > 0 ? (
-     <Grid maxColumns={3}>
+     <Grid
+      maxColumns={3}
+      xs={1}
+      initial={reducedMotion ? false : "closed"}
+      whileInView={reducedMotion ? undefined : "open"}
+      viewport={reducedMotion ? undefined : { once: true, amount: 0.2 }}
+      variants={
+       reducedMotion
+        ? undefined
+        : {
+           open: { transition: { staggerChildren: 0.06 } },
+           closed: {},
+          }
+      }
+     >
             {sortedCoaches.map((coach) => (
              <CoachCard
                 key={coach._id}

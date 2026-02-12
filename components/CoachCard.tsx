@@ -80,6 +80,7 @@ const CoachCard: React.FC<CoachCardProps> = ({ coach }) => {
             alt={featuredImage.node.altText}
             width={featuredImage.node.mediaDetails.width}
             height={featuredImage.node.mediaDetails.height}
+            sizes="(max-width: 699px) 100vw, (max-width: 979px) 100vw, (max-width: 1139px) 50vw, 33vw"
             className={styles.coachcard__image}
           />
         </a>

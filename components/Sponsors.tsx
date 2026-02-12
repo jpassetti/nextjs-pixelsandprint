@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import Grid from "./Grid";
 import Heading from "./Heading";
@@ -19,6 +20,7 @@ interface SponsorsProps {
 }
 
 const Sponsors: React.FC<SponsorsProps> = ({ year, sponsors = [] }) => {
+ const reducedMotion = useReducedMotion();
 
  const variants = {
   open: {
@@ -50,7 +52,22 @@ const Sponsors: React.FC<SponsorsProps> = ({ year, sponsors = [] }) => {
    </Heading>
    <Container>
     {sponsors.length > 0 ? (
-    <Grid maxColumns={4}>
+    <Grid
+     maxColumns={4}
+     xs={2}
+     sm={2}
+     initial={reducedMotion ? false : "closed"}
+     whileInView={reducedMotion ? undefined : "open"}
+     viewport={reducedMotion ? undefined : { once: true, amount: 0.2 }}
+     variants={
+      reducedMotion
+       ? undefined
+       : {
+          open: { transition: { staggerChildren: 0.05 } },
+          closed: {},
+         }
+     }
+    >
      {sponsors.map((sponsor) => {
         const { name, url, logo } = sponsor;
         const logoUrl = logo?.asset?.url;
@@ -66,6 +83,7 @@ const Sponsors: React.FC<SponsorsProps> = ({ year, sponsors = [] }) => {
                 alt={logo?.alt || name}
                 width={width || 300}
                 height={height || 150}
+                sizes="(max-width: 699px) 50vw, (max-width: 979px) 50vw, (max-width: 1139px) 33vw, 25vw"
                 className={styles.sponsorImage}
               />
              </a>

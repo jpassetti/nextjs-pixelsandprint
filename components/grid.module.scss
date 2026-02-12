@@ -4,9 +4,84 @@
  display: grid;
  grid-template-columns: 1fr;
  grid-gap: 1rem;
+
+ &__mobile__2 {
+  grid-template-columns: repeat(2, 1fr);
+ }
+ &__mobile__3 {
+  grid-template-columns: repeat(3, 1fr);
+ }
+ &__mobile__4 {
+  grid-template-columns: repeat(4, 1fr);
+ }
+
+ @include mixins.breakpoint(xs) {
+  &__xs__1 {
+   grid-template-columns: repeat(1, 1fr);
+  }
+  &__xs__2 {
+   grid-template-columns: repeat(2, 1fr);
+  }
+  &__xs__3 {
+   grid-template-columns: repeat(3, 1fr);
+  }
+  &__xs__4 {
+   grid-template-columns: repeat(4, 1fr);
+  }
+  &__xs__5 {
+   grid-template-columns: repeat(5, 1fr);
+  }
+  &__xs__6 {
+   grid-template-columns: repeat(6, 1fr);
+  }
+ }
+
+ @include mixins.breakpoint(sm) {
+  &__sm__1 {
+   grid-template-columns: repeat(1, 1fr);
+  }
+  &__sm__2 {
+   grid-template-columns: repeat(2, 1fr);
+  }
+  &__sm__3 {
+   grid-template-columns: repeat(3, 1fr);
+  }
+  &__sm__4 {
+   grid-template-columns: repeat(4, 1fr);
+  }
+  &__sm__5 {
+   grid-template-columns: repeat(5, 1fr);
+  }
+  &__sm__6 {
+   grid-template-columns: repeat(6, 1fr);
+  }
+ }
+
  @include mixins.breakpoint(laptop) {
   grid-template-columns: repeat(2, 1fr);
  }
+
+ @include mixins.breakpoint(md) {
+  &__md__1 {
+   grid-template-columns: repeat(1, 1fr);
+  }
+  &__md__2 {
+   grid-template-columns: repeat(2, 1fr);
+  }
+  &__md__3 {
+   grid-template-columns: repeat(3, 1fr);
+  }
+  &__md__4 {
+   grid-template-columns: repeat(4, 1fr);
+  }
+  &__md__5 {
+   grid-template-columns: repeat(5, 1fr);
+  }
+  &__md__6 {
+   grid-template-columns: repeat(6, 1fr);
+  }
+ }
+
  @include mixins.breakpoint(desktop) {
   grid-template-columns: repeat(4, 1fr);
   &__columns__2 {
@@ -17,6 +92,46 @@
   }
   &__columns__4 {
    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &__lg__1 {
+   grid-template-columns: repeat(1, 1fr);
+  }
+  &__lg__2 {
+   grid-template-columns: repeat(2, 1fr);
+  }
+  &__lg__3 {
+   grid-template-columns: repeat(3, 1fr);
+  }
+  &__lg__4 {
+   grid-template-columns: repeat(4, 1fr);
+  }
+  &__lg__5 {
+   grid-template-columns: repeat(5, 1fr);
+  }
+  &__lg__6 {
+   grid-template-columns: repeat(6, 1fr);
+  }
+ }
+
+ @include mixins.breakpoint(xl) {
+  &__xl__1 {
+   grid-template-columns: repeat(1, 1fr);
+  }
+  &__xl__2 {
+   grid-template-columns: repeat(2, 1fr);
+  }
+  &__xl__3 {
+   grid-template-columns: repeat(3, 1fr);
+  }
+  &__xl__4 {
+   grid-template-columns: repeat(4, 1fr);
+  }
+  &__xl__5 {
+   grid-template-columns: repeat(5, 1fr);
+  }
+  &__xl__6 {
+   grid-template-columns: repeat(6, 1fr);
   }
  }
 }

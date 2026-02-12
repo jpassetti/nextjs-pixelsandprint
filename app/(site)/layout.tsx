@@ -3,13 +3,31 @@ import { Roboto_Condensed } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyNav from "@/components/StickyNav";
+import { getSiteUrl } from "@/lib/seo";
 
 import "@/sass/global.scss";
 
 export const metadata = {
+ metadataBase: new URL(getSiteUrl()),
  title: "Pixels & Print Workshop | Newhouse School at Syracuse University",
  description:
   "Pixels & Print is a design workshop for social impact. The workshop is limited to students in the graphic design program at the Newhouse School.",
+ openGraph: {
+  type: "website",
+  siteName: "Pixels & Print",
+    images: [
+     {
+        url: "/pixels-and-print-og-1200x630px.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Pixels & Print",
+     },
+    ],
+ },
+ twitter: {
+    card: "summary_large_image",
+    images: ["/pixels-and-print-og-1200x630px.jpg"],
+ },
 };
 
 const robotoCondensed = Roboto_Condensed({
@@ -67,9 +85,12 @@ export default function SiteRootLayout({
     />
    </head>
    <body>
+    <div id="top" />
     <Header />
     <StickyNav />
-    <main>{children}</main>
+    <main id="main-content" tabIndex={-1}>
+     {children}
+    </main>
     <Footer />
    </body>
   </html>

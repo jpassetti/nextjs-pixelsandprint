@@ -7,6 +7,36 @@ import { sanityFetch } from "@/lib/sanity.client";
 import { workTimelineQuery } from "@/lib/sanity.queries";
 import type { WorkItem } from "@/lib/sanity.types";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { absoluteUrl, getSiteUrl } from "@/lib/seo";
+
+export async function generateMetadata({
+ params,
+}: {
+ params: { year: string } | Promise<{ year: string }>;
+}): Promise<Metadata> {
+ const resolvedParams = await Promise.resolve(params);
+ const yearSlug = resolvedParams.year;
+ const canonical = absoluteUrl(`/${yearSlug}/work`);
+ const siteUrl = getSiteUrl();
+
+ const title = `Work Timeline ${yearSlug} | Pixels & Print`;
+ const description = `Work timeline items for Pixels & Print ${yearSlug}.`;
+
+ return {
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  alternates: { canonical },
+  openGraph: {
+   type: "website",
+   url: canonical,
+   title,
+   description,
+   siteName: "Pixels & Print",
+  },
+ };
+}
 
 export default async function WorkPage({
  params,

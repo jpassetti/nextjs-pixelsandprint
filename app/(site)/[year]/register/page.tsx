@@ -11,6 +11,27 @@ import { sanityFetch } from "@/lib/sanity.client";
 import { yearPageQuery } from "@/lib/sanity.queries";
 import type { WorkshopYearPage } from "@/lib/sanity.types";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { absoluteUrl, getSiteUrl } from "@/lib/seo";
+
+export async function generateMetadata({
+ params,
+}: {
+ params: { year: string } | Promise<{ year: string }>;
+}): Promise<Metadata> {
+ const resolvedParams = await Promise.resolve(params);
+ const yearSlug = resolvedParams.year;
+ const canonical = absoluteUrl(`/${yearSlug}/register`);
+ const siteUrl = getSiteUrl();
+
+ return {
+  metadataBase: new URL(siteUrl),
+  title: `Register ${yearSlug} | Pixels & Print`,
+  description: `Registration for Pixels & Print ${yearSlug}.`,
+  alternates: { canonical },
+  robots: { index: false, follow: true },
+ };
+}
 
 const RegisterPage = async ({
  params,

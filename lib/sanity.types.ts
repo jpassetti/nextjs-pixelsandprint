@@ -58,6 +58,7 @@ export type ScheduleEvent = {
 
 export type WorkshopYearPage = {
  _id: string;
+ _updatedAt?: string;
  year: number;
  slug: string;
  workshopDatesLabel?: string;

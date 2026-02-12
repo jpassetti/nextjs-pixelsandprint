@@ -12,7 +12,7 @@
     display: flex;   
     align-items: center;
     @include mixins.breakpoint(phone) {
-      justify-content: flex-start;
+      justify-content: center;
       gap: 1rem;
     }
     @include mixins.breakpoint(tablet) {
