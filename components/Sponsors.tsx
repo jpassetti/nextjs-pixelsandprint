@@ -10,6 +10,7 @@ import Paragraph from "./Paragraph"; // Assuming Paragraph is a component for st
 import type { Sponsor } from "@/lib/sanity.types";
 
 import styles from "./sponsors.module.scss";
+import Container from "./Container";
 
 // Define the props interface
 interface SponsorsProps {
@@ -47,6 +48,7 @@ const Sponsors: React.FC<SponsorsProps> = ({ year, sponsors = [] }) => {
    >
     Sponsors
    </Heading>
+   <Container>
     {sponsors.length > 0 ? (
     <Grid maxColumns={4}>
      {sponsors.map((sponsor) => {
@@ -82,6 +84,7 @@ const Sponsors: React.FC<SponsorsProps> = ({ year, sponsors = [] }) => {
      Sponsor information for {year} is not yet available.
     </Paragraph>
    )}
+    </Container>
   </Section>
  );
 };
